@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-// import { useStateContext } from '../context';
+
+import { useStateContext } from '../context';
 import { money } from '../assets';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
@@ -9,12 +10,12 @@ import { checkIfImage } from '../utils';
 const SuggestProject = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  // const { createCampaign } = useStateContext();
+  const { user, suggestProject } = useStateContext();
   const [form, setForm] = useState({
     owner: '',
     title: '',
     description: '',
-    contactInfo: '', 
+    phoneNumber: '', 
     email: '',
     image: ''
   });
@@ -25,11 +26,17 @@ const SuggestProject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    console.log("FORMDATA", form)
 
+    if (!user) {
+      alert("Нужно авторизоваться.");
+      return;
+    }
     checkIfImage(form.image, async (exists) => {
       if(exists) {
         setIsLoading(true)
-        await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
+        await suggestProject(form)
         setIsLoading(false);
         navigate('/');
       } else {
@@ -38,6 +45,12 @@ const SuggestProject = () => {
       }
     })
   }
+  const categoryOptions = [
+    { value: 'technology', label: 'Technology' },
+    { value: 'education', label: 'Education' },
+    { value: 'health', label: 'Health' },
+    { value: 'other', label: 'Other' }
+  ];
 
   return (
     <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
@@ -65,11 +78,11 @@ const SuggestProject = () => {
         </div>
 
         <FormField 
-            labelName="Контактные данные *"
-            placeholder="Write your story"
+            labelName="Номер телефона *"
+            placeholder="+996 (ххх) хх-хх-хх"
             inputType="text"
-            value={form.contactInfo}
-            handleChange={(e) => handleFormFieldChange('contactInfo', e)}
+            value={form.phoneNumber}
+            handleChange={(e) => handleFormFieldChange('phoneNumber', e)}
           />
 
 
@@ -82,12 +95,12 @@ const SuggestProject = () => {
             handleChange={(e) => handleFormFieldChange('email', e)}
           />
           <FormField 
-            labelName="End Date *"
-            placeholder="End Date"
-            inputType="date"
-            value={form.deadline}
-            handleChange={(e) => handleFormFieldChange('deadline', e)}
-          />
+          labelName="Категория *"
+          inputType="select"
+          value={form.category}
+          handleChange={(e) => handleFormFieldChange('category', e)}
+          options={categoryOptions} // Pass options for select
+        />
         </div>
 
         <FormField 

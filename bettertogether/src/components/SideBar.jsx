@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { logo, sun } from '../assets';
 import { navlinks } from '../constants';
+import { useStateContext } from '../context';
 
 const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
   <div className={`w-[48px] h-[48px] rounded-[10px] ${isActive && isActive === name && 'bg-[#2c2f32]'} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles}`} onClick={handleClick}>
@@ -17,6 +18,21 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
 const Sidebar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
+  const { user, logOut, signIn } = useStateContext(); // Access user and logOut from AuthContext
+
+  const handleLogout = async () => {
+    if (user) { // Check if user is authenticated
+      try {
+        await logOut(); // Call logOut function from AuthContext
+        window.location.reload();
+      } catch (error) {
+        console.error('Error logging out:', error);
+        // Handle logout errors gracefully (e.g., display an error message)
+      }
+    }
+    else signIn();
+    navigate('/');
+  };
 
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
@@ -35,6 +51,10 @@ const Sidebar = () => {
                 if(!link.disabled) {
                   setIsActive(link.name);
                   navigate(link.link);
+                }
+                if (link.name == "Выйти") {
+                  handleLogout();
+                  navigate('/');
                 }
               }}
             />
