@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Route, Routes } from 'react-router-dom';
-import { ProjectDetail, SuggestProject, Home, Profile, AboutUs } from './pages';
+import { ProjectDetail, SuggestProject, Home, Profile, AboutUs, Welcome } from './pages';
 import { DisplayProjects, SideBar, NavBar } from './components';
 
 const App = () => {
@@ -31,6 +31,7 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/bettertogether" element={<Welcome />} />
           <Route path="/about_us" element={<AboutUs />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/suggest-project" element={<SuggestProject />} />
