@@ -13,23 +13,32 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        # This checks out your repository code into the runner.
 
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 16
+        # Sets up Node.js environment.
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: |
+          cd bettertogether
+          npm ci
+        # Change directory and install dependencies.
 
       - name: Build project
-        run: npm run build
+        run: |
+          cd bettertogether
+          npm run build
+        # Change directory and run the build script.
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
         with:
           name: production-files
-          path: ./dist
+          path: bettertogether/dist
+        # Uploads the build artifacts from the dist directory in the bettertogether subdirectory.
 
   deploy:
     name: Deploy
@@ -38,17 +47,16 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: production-files
-          path: ./dist
+          path: bettertogether/dist
+        # Downloads the previously uploaded build files.
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: bettertogether/dist
+        # Deploys the contents of the dist directory from the bettertogether subdirectory to GitHub Pages.
