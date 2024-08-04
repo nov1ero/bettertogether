@@ -38,7 +38,7 @@ const SuggestProject = () => {
         setIsLoading(true)
         await suggestProject(form)
         setIsLoading(false);
-        navigate('/home');
+        navigate("/home");
       } else {
         alert('Provide valid image URL')
         setForm({ ...form, image: '' });

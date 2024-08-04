@@ -31,7 +31,7 @@ const Sidebar = () => {
       }
     }
     else signIn();
-    navigate('/home');
+    navigate("/home");
   };
 
   return (
@@ -54,7 +54,7 @@ const Sidebar = () => {
                 }
                 if (link.name == "Выйти") {
                   handleLogout();
-                  navigate('/home');
+                  navigate("/home");
                 }
               }}
             />

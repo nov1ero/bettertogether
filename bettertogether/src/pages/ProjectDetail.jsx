@@ -134,7 +134,7 @@ const ProjectDetail = () => {
   const handleDeleteProject = async () => {
     if (window.confirm("Вы уверены что хотите удалить этот проект?")) {
       await deleteProject(state.pId);
-      navigate('/home'); // Redirect after deletion
+      navigate("/home"); // Redirect after deletion
     }
   };
 
@@ -224,7 +224,7 @@ const ProjectDetail = () => {
                   btnType="button"
                   title={projectData.approved ? 'Подтверждено' : 'Подтвердить'}
                   styles={projectData.approved ? 'bg-[#1dc071] mr-4' : 'bg-[#a8341d] mr-4'}
-                  handleClick={() => projectData.approved ? navigate('/home') : handleApproveProject()}
+                  handleClick={() => projectData.approved ? navigate("/home") : handleApproveProject()}
                 />
                 <CustomButton
                   btnType="button"

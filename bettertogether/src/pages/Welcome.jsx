@@ -5,7 +5,7 @@ const WelcomePage = () => {
   const navigate = useNavigate();
 
   const handleNavigateHome = () => {
-    navigate('/home'); // Замените '/home' на ваш маршрут для главной страницы
+    navigate("/home"); // Замените "/home" на ваш маршрут для главной страницы
   };
 
   return (
