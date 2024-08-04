@@ -4,7 +4,7 @@ export const navlinks = [
   {
     name: 'Главная',
     imgUrl: dashboard,
-    link: "/home",
+    link: '/home',
   },
   {
     name: 'Отправить запрос',
@@ -26,7 +26,7 @@ export const navlinks = [
   {
     name: 'Выйти',
     imgUrl: logout,
-    link: "/home",
+    link: '/home',
     // disabled: true,
   },
   {

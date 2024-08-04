@@ -24,14 +24,14 @@ const Sidebar = () => {
     if (user) { // Check if user is authenticated
       try {
         await logOut(); // Call logOut function from AuthContext
-        navigate("/home");
+        
       } catch (error) {
         console.error('Error logging out:', error);
         // Handle logout errors gracefully (e.g., display an error message)
       }
     }
     else signIn();
-    navigate("/home");
+    
   };
 
   return (
