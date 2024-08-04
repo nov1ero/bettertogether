@@ -24,7 +24,7 @@ const Sidebar = () => {
     if (user) { // Check if user is authenticated
       try {
         await logOut(); // Call logOut function from AuthContext
-        navigate("/");
+        navigate("/home");
       } catch (error) {
         console.error('Error logging out:', error);
         // Handle logout errors gracefully (e.g., display an error message)
@@ -36,7 +36,7 @@ const Sidebar = () => {
 
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
-      <Link to="/">
+      <Link to="/home">
         <Icon styles="w-[52px] h-[52px] bg-[#2c2f32]" imgUrl={logo} />
       </Link>
 
