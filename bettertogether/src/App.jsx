@@ -12,7 +12,6 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const location = useLocation();
-  console.log("Последний Документ", lastDoc);
 
   const handleSearch = () => {
     setIsSearched(true);
@@ -60,12 +59,12 @@ const App = () => {
           </div>
 
           <Routes>
-            <Route path="/home" element={<Home />} />
+            <Route path="/bettertogether/home" element={<Home />} />
             <Route path="/bettertogether" element={<Welcome />} />
-            <Route path="/about_us" element={<AboutUs />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/suggest-project" element={<SuggestProject />} />
-            <Route path="/project-details/:title" element={<ProjectDetail />} />
+            <Route path="/bettertogether/about_us" element={<AboutUs />} />
+            <Route path="/bettertogether/profile" element={<Profile />} />
+            <Route path="/bettertogether/suggest-project" element={<SuggestProject />} />
+            <Route path="/bettertogether/project-details/:title" element={<ProjectDetail />} />
           </Routes>
         </div>
       </div>

@@ -32,8 +32,6 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
 
   const categoriesRef = useRef(null);
 
-  console.log("selectedCategories", categoryNames);
-
   const handleSearchButtonState = () => {
     const isSearchTermEmpty = localSearchTerm.trim() === '';
     const areCategoriesEmpty = categoryNames.length === 0;

@@ -20,10 +20,6 @@ const ProjectDetail = () => {
   const [formStatus, setFormStatus] = useState('');
   const [isDarkMode, setDarkMode] = useState(false);
 
-  console.log("userName",userName)
-
-  console.log("ProjectDetails",user)
-
   // Function to fetch project by pId
   const fetchProjectById = async (pId) => {
     try {
@@ -87,6 +83,11 @@ const ProjectDetail = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!user) {
+      alert("Нужно авторизоваться.");
+      return;
+    }
+
     // Your EmailJS service ID, template ID, and Public Key
     const serviceId = 'service_85cd3ym';
     const templateId = 'template_382jih7';
@@ -98,6 +99,7 @@ const ProjectDetail = () => {
       from_name: userName,
       subject: formData.subject,
       to_name: ownerData?.displayName,
+      project: projectData.title,
       message: formData.message,
     };
 
@@ -156,7 +158,7 @@ const ProjectDetail = () => {
   const handleDeleteProject = async () => {
     if (window.confirm("Вы уверены что хотите удалить этот проект?")) {
       await deleteProject(state.pId);
-      navigate("/home"); // Redirect after deletion
+      navigate("/bettertogether/home"); // Redirect after deletion
     }
   };
 
@@ -171,9 +173,9 @@ const ProjectDetail = () => {
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
           <img src={projectData.image} alt="campaign" className="w-full h-[410px] object-cover rounded-xl" />
-          <div className="relative w-full h-[5px] bg-[#3a3a43] mt-2">
+          <div className="relative w-full h-[5px]  mt-8">
             <div>
-              <h1 className="font-epilogue font-semibold text-[24px] text-white uppercase">{projectData.title}</h1>
+              <h1 className={`font-epilogue font-bold text-[24px] ${isDarkMode ? 'text-white' : 'text-black  '} uppercase`}>{projectData.title}</h1>
             </div>
           </div>
         </div>
@@ -185,7 +187,7 @@ const ProjectDetail = () => {
       <div className="mt-[60px] flex lg:flex-row flex-col gap-5">
         <div className="flex-[2] flex flex-col gap-[40px]">
           <div>
-            <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Основатель</h4>
+            <h4 className={`font-epilogue font-semibold text-[18px] ${isDarkMode ? 'text-white' : 'text-black  '} uppercase`}>Основатель</h4>
             <div className="mt-[20px] flex flex-row items-center flex-wrap gap-[14px]">
               <div className="w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer">
                 <img src={ownerData?.photoURL || ''} alt="user" className="w-[100%] h-[100%] object-fill rounded-full" />
@@ -221,7 +223,7 @@ const ProjectDetail = () => {
             >
               <option value="">Выберите тему</option>
               <option value="Поддержать проект">Поддержать проект</option>
-              <option value="Стать волонтером">Стать волонтером</option>
+              <option value="Стать волонтером в">Стать волонтером</option>
             </select>
             <textarea
               name="message"
@@ -246,7 +248,7 @@ const ProjectDetail = () => {
                   btnType="button"
                   title={projectData.approved ? 'Подтверждено' : 'Подтвердить'}
                   styles={projectData.approved ? 'bg-[#1dc071] mr-4' : 'bg-[#a8341d] mr-4'}
-                  handleClick={() => projectData.approved ? navigate("/home") : handleApproveProject()}
+                  handleClick={() => projectData.approved ? navigate("/bettertogether/home") : handleApproveProject()}
                 />
                 <CustomButton
                   btnType="button"

@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../context';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebaseConfig';
+import emailjs from '@emailjs/browser'
 
 const SuggestProject = () => {
   const navigate = useNavigate();
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
+  const [userName, setUserName] = useState();
+  const [userEmail, setUserEmail] = useState();
   const { user, suggestProject, theme, getSingleCategory } = useStateContext();
   const [form, setForm] = useState({
     owner: '',
@@ -19,6 +24,7 @@ const SuggestProject = () => {
     image: '',
     category: ''
   });
+  
 
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: e.target.value });
@@ -63,13 +69,66 @@ const SuggestProject = () => {
         setIsLoading(true);
         await suggestProject(form);
         setIsLoading(false);
-        navigate('/home');
+        navigate('/bettertogether/home');
       } else {
         alert('Provide valid image URL');
         setForm({ ...form, image: '' });
       }
     });
+
+    // Your EmailJS service ID, template ID, and Public Key
+    const serviceId = 'service_85cd3ym';
+    const templateId = 'template_zicautf';
+    const publicKey = 'oj4-K8TY-KWvvUOxC';
+
+    // Create a new object that contains dynamic template params
+    const templateParams = {
+      to_email:  userEmail,
+      from_name: "BetterTogether",
+      project_title: form.title,
+      subject: "Запрос успешно отправлен",
+      to_name: userName,
+      message: 'Подождите некоторое время и ваш проект одобрят админы. Вам могут присылать письма пользователи, которые хотят оказать какую-либо поддержку вашему проекту. Чтобы не пропускать письма от них, пометьте это письмо как "Не спам"',
+    };
+
+    // Send the email using EmailJS
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('Email sent successfully!', response);
+        setUserName(null);
+        alert("Вам на почту пришло письмо. \n\n Проверьте папку спам, если не нашли его.");
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+      });
   };
+
+  const checkUser = async () => {
+    if (user) {
+      try {
+        const userDocRef = doc(db, 'users', user.uid);
+        const userDoc = await getDoc(userDocRef);
+        
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+
+          if (userData.displayName) {
+            setUserName(userData.displayName);
+          }
+          
+          if (userData.email) {
+            setUserEmail(userData.email);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, [user]);
 
   return (
     <div className={`flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4 ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} `}>

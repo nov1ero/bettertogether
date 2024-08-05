@@ -49,7 +49,7 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch, isSearched, han
     : projects.filter(project => project.approved); 
 
   const handleProjectClick = (project) => {
-    navigate(`/project-details/${encodeURIComponent(project.title)}`, { state: { pId: project.pId } });
+    navigate(`/bettertogether/project-details/${encodeURIComponent(project.title)}`, { state: { pId: project.pId } });
     projects = [];
   };
 
