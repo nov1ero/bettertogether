@@ -51,6 +51,12 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && localSearchTerm.trim() !== '') {
+      handleSearch();
+    }
+  };
+
   useEffect(() => {
     setDarkMode(theme === 'dark');
   }, [theme]);
@@ -66,6 +72,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
           className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? 'text-white' : 'text-black'} bg-transparent outline-none`}
           value={localSearchTerm}
           onChange={(e) => setLocalSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <div
           className={`w-[72px] h-full rounded-[20px] ${localSearchTerm.trim() === '' ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${localSearchTerm.trim() === '' ? 'pointer-events-none' : ''}`}
