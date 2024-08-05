@@ -6,7 +6,7 @@ import { useStateContext } from '../context';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
-const DisplayProjects = ({ title, projects, isLoading, isSearch }) => {
+const DisplayProjects = ({ title, projects, isLoading, isSearch , isSearched}) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [ isDarkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
@@ -54,8 +54,15 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch }) => {
     projects = [];
   };
 
+  console.log('Фильтр', filteredProjects)
+
   return (
     <div>
+      {!isLoading && filteredProjects.length === 0 && !isSearch && isSearched && (
+          <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818183]">
+            Ничего не найдено.
+          </p>
+        )}
       {isSearch && (
         <h1 className={`font-epilogue font-semibold text-[18px]${isDarkMode ? 'text-white' : 'text-black  '}  text-left`}>
         {title} ({filteredProjects.length})
@@ -87,6 +94,9 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch }) => {
           />
         ))}
       </div>
+      {!isLoading && filteredProjects.length > 0 && !isSearch && isSearched
+      // Здесь нужна кнопка загрузить еще
+      }
     </div>
   );
 };

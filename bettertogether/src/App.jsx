@@ -6,10 +6,16 @@ import { StateContextProvider } from './context';
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const [isSearched, setIsSearched] = useState(false); // Add isSearched state
   const location = useLocation();
+
+  const handleSearch = () => {
+    setIsSearched(true);
+  };
 
   useEffect(() => {
     setSearchResults([]);
+    setIsSearched(false); // Reset isSearched when location changes
   }, [location.pathname]);
 
   return (
@@ -20,13 +26,14 @@ const App = () => {
         </div>
 
         <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5">
-          <NavBar setSearchResults={setSearchResults} />
+          <NavBar setSearchResults={setSearchResults} onSearch={handleSearch} />
           <div className="mb-8">
             <DisplayProjects
               title="Результаты поиска"
               projects={searchResults}
               isLoading={false}
               isSearch={false}
+              isSearched={isSearched} // Pass isSearched to DisplayProjects
             />
           </div>
 

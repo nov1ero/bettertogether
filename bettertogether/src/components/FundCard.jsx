@@ -93,14 +93,14 @@ const FundCard = ({
         </div>
 
         <div className="block">
-          <h3 className="font-epilogue font-semibold text-[20px] text-white text-left leading-[26px] truncate">{title}</h3>
-          <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">{description}</p>
+          <h3 className={`font-epilogue font-semibold text-[20px] ${isDarkMode ? 'text-white' : 'text-dark'} text-left leading-[26px] truncate`}>{title}</h3>
+          <p className={`mt-[5px] font-epilogue font-normal ${isDarkMode ? 'text-[#808191]' : 'text-[#404040]'} text-left leading-[18px] truncate`}>{description}</p>
         </div>
 
         <div className="flex justify-between flex-wrap mt-[15px] gap-2">
           <div className="flex flex-col">
-            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">Номер телефона: {phoneNumber}</h4>
-            <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">Эл.почта: {email}</p>
+            <h4 className={`font-epilogue font-semibold text-[14px] ${isDarkMode ? 'text-[#b2b3bd]' : 'text-[#262626]'} leading-[22px]`}>Номер телефона: {phoneNumber}</h4>
+            <p className={`mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] ${isDarkMode ? 'text-[#808191]' : 'text-[#404040]'} sm:max-w-[120px] truncate`}>Эл.почта: {email}</p>
           </div>
           {isAdmin && (
             <div className="flex flex-col">

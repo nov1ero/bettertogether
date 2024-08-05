@@ -5,39 +5,49 @@ import { CustomButton } from './';
 import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
 
-const Navbar = ({ setSearchResults }) => {
+const Navbar = ({ setSearchResults, onSearch }) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [ isDarkMode, setDarkMode] = useState(false);
-  const { signIn, user, searchProjects, logOut, theme} = useStateContext();
+  const [isDarkMode, setDarkMode] = useState(false);
+  const [results, setResults] = useState([]);
+  const [lastDoc, setLastDoc] = useState(null);
+  const { signIn, user, searchProjects, logOut, theme } = useStateContext();
 
   const handleSearch = async () => {
-    const results = await searchProjects(searchTerm);
-    setSearchResults(results);
+    if (searchTerm.trim() === '') return;
+
+    const { results: searchResults, newLastDoc } = await searchProjects(searchTerm);
+    setResults(searchResults);
+    setLastDoc(newLastDoc);
+    setSearchResults(searchResults);
+    onSearch(); // Call the onSearch function
+  };
+
+  const handleLoadMore = async () => {
+    if (searchTerm.trim() === '') return; // Prevent load more if input is empty
+
+    const { results: moreResults, newLastDoc } = await searchProjects(searchTerm, lastDoc);
+    setResults((prevResults) => [...prevResults, ...moreResults]);
+    setLastDoc(newLastDoc);
+    setSearchResults((prevResults) => [...prevResults, ...moreResults]);
   };
 
   const handleLogout = async () => {
-    if (user) { // Check if user is authenticated
+    if (user) {
       try {
-        await logOut(); // Call logOut function from AuthContext
-        
+        await logOut();
       } catch (error) {
         console.error('Error logging out:', error);
-        // Handle logout errors gracefully (e.g., display an error message)
       }
+    } else {
+      signIn();
     }
-    else signIn();
-    
   };
 
   useEffect(() => {
-    if (theme === 'light') {
-      setDarkMode(false);
-    } else if (theme === 'dark') {
-      setDarkMode(true);
-    }
+    setDarkMode(theme === 'dark');
   }, [theme]);
 
   return (
@@ -53,7 +63,7 @@ const Navbar = ({ setSearchResults }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div
-          className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer"
+          className={`w-[72px] h-full rounded-[20px] ${searchTerm.trim() === '' ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${searchTerm.trim() === '' ? 'pointer-events-none' : ''}`}
           onClick={handleSearch}
         >
           <img src={search} alt="search" className="w-[15px] h-[15px] object-contain" />
@@ -85,7 +95,6 @@ const Navbar = ({ setSearchResults }) => {
       <div className="sm:hidden flex justify-between items-center relative">
         <Link to="/home">
           <div className={`w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? 'bg-[#2c2f32]' : 'bg-[#e6e6e6]'} flex justify-center items-center cursor-pointer`}>
-            
             <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
           </div>
         </Link>
@@ -107,7 +116,7 @@ const Navbar = ({ setSearchResults }) => {
                   setIsActive(link.name);
                   setToggleDrawer(false);
                   navigate(link.link);
-                  if (link.name == "Выйти") {
+                  if (link.name === "Выйти") {
                     handleLogout();
                     navigate("/home");
                   }

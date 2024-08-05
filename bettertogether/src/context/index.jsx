@@ -1,5 +1,18 @@
 import React, { useContext, createContext, useState, useEffect } from 'react';
-import { doc, collection, getDocs, addDoc, query, updateDoc, getDoc, setDoc, where, deleteDoc } from 'firebase/firestore';
+import { 
+  doc, 
+  collection, 
+  getDocs, 
+  addDoc, 
+  query, 
+  updateDoc, 
+  getDoc, 
+  setDoc, 
+  where, 
+  deleteDoc, 
+  orderBy, 
+  limit, 
+  startAfter } from 'firebase/firestore';
 import { provider, db } from '../../firebaseConfig';
 import { 
   getAuth,
@@ -153,16 +166,41 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
-  const searchProjects = async (searchTerm) => {
+  const searchProjects = async (searchTerm, lastDoc = null, batchSize = 10) => {
     if (!searchTerm) return [];
+  
     try {
-      const q = query(collection(db, 'projects'), where('title', '>=', searchTerm), where('title', '<=', searchTerm + '\uf8ff'));
+      // Create the query to fetch projects
+      const projectsRef = collection(db, 'projects');
+      let q = query(projectsRef, orderBy('title'), limit(batchSize));
+  
+      // If there's a last document, start after it for pagination
+      if (lastDoc) {
+        q = query(q, startAfter(lastDoc));
+      }
+  
+      // Fetch all projects
       const querySnapshot = await getDocs(q);
-      const results = querySnapshot.docs.map(doc => ({ ...doc.data(), pId: doc.id }));
-      return results;
+  
+      // Normalize search term to lowercase
+      const lowerSearchTerm = searchTerm.toLowerCase();
+  
+      // Process results
+      const results = querySnapshot.docs
+        .map(doc => ({ ...doc.data(), pId: doc.id }))
+        .filter(project => {
+          // Normalize project title to lowercase
+          const lowerTitle = project.title.toLowerCase();
+          return lowerTitle.includes(lowerSearchTerm);
+        });
+  
+      // Determine the last document for pagination
+      const newLastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] || null;
+  
+      return { results, newLastDoc };
     } catch (error) {
       console.error('Error searching projects:', error);
-      return [];
+      return { results: [], newLastDoc: null };
     }
   };
 
