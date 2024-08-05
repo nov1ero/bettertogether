@@ -14,6 +14,7 @@ const StateContext = createContext();
 export const StateContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([]);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const auth = getAuth();
 
   useEffect(() => {
@@ -23,15 +24,20 @@ export const StateContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
   const signIn = async () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
-  
     try {
-      console.log("Initiating sign-in...");
       const result = await signInWithPopup(auth, provider);
-      console.log("Sign-in result:", result);
-  
       const user = result.user;
       const userData = {
         email: user.email,
@@ -39,29 +45,18 @@ export const StateContextProvider = ({ children }) => {
         photoURL: user.photoURL,
         roles: ['user'],
       };
-  
-      // Reference to the user document
       const userDocRef = doc(db, 'users', user.uid);
-  
-      // Check if user document exists
       const userDoc = await getDoc(userDocRef);
-  
       if (!userDoc.exists()) {
-        // If the document does not exist, create it
         await setDoc(userDocRef, userData);
-        console.log("User data saved:", userData);
-      } else {
-        console.log("User already exists in the database.");
       }
     } catch (error) {
       console.error('Error signing in:', error);
     }
   };
-  
 
   const logOut = () => {
     signOut(auth);
-    
   };
 
   const suggestProject = async (form) => {
@@ -69,14 +64,10 @@ export const StateContextProvider = ({ children }) => {
       console.error("User is not authenticated.");
       return;
     }
-  
     try {
-      // Create a reference to the user document
       const userRef = doc(db, 'users', user.uid);
-  
-      // Add the project with the user reference
       const docRef = await addDoc(collection(db, 'projects'), {
-        owner: userRef, // Store the reference instead of the user ID
+        owner: userRef,
         title: form.title,
         description: form.description,
         phoneNumber: form.phoneNumber,
@@ -85,8 +76,6 @@ export const StateContextProvider = ({ children }) => {
         approved: false,
         category: form.category,
       });
-  
-      console.log('Project added with ID:', docRef.id);
     } catch (error) {
       console.error("Error publishing project:", error);
     }
@@ -109,20 +98,11 @@ export const StateContextProvider = ({ children }) => {
       console.error("User is not authenticated.");
       return [];
     }
-  
     try {
-      // Reference to the current user's document
       const userDocRef = doc(db, 'users', user.uid);
       const userDoc = await getDoc(userDocRef);
-  
-      // If user document exists, proceed with fetching projects
       if (userDoc.exists()) {
-        // Query projects where the 'owner' field references the current user's document
-        const userProjectQuery = query(
-          collection(db, 'projects'),
-          where('owner', '==', userDocRef)
-        );
-        
+        const userProjectQuery = query(collection(db, 'projects'), where('owner', '==', userDocRef));
         const querySnapshot = await getDocs(userProjectQuery);
         const fetchedProjects = querySnapshot.docs.map(doc => ({ ...doc.data(), pId: doc.id }));
         return fetchedProjects;
@@ -165,12 +145,8 @@ export const StateContextProvider = ({ children }) => {
 
   const deleteProject = async (pId) => {
     try {
-      // Reference to the project document
       const projectDocRef = doc(db, 'projects', pId);
-      
-      // Delete the project document
       await deleteDoc(projectDocRef);
-      
       alert(`Проект с ID ${pId} успешно удален.`);
     } catch (error) {
       alert('Ошибка при удалении проекта:', error);
@@ -179,9 +155,7 @@ export const StateContextProvider = ({ children }) => {
 
   const searchProjects = async (searchTerm) => {
     if (!searchTerm) return [];
-  
     try {
-      // Define your query to search across different fields
       const q = query(collection(db, 'projects'), where('title', '>=', searchTerm), where('title', '<=', searchTerm + '\uf8ff'));
       const querySnapshot = await getDocs(q);
       const results = querySnapshot.docs.map(doc => ({ ...doc.data(), pId: doc.id }));
@@ -191,7 +165,10 @@ export const StateContextProvider = ({ children }) => {
       return [];
     }
   };
-  
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   return (
     <StateContext.Provider
@@ -207,6 +184,8 @@ export const StateContextProvider = ({ children }) => {
         getUserProjects,
         signIn,
         logOut,
+        theme,
+        toggleTheme,
       }}
     >
       {children}

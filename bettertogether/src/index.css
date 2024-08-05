@@ -16,3 +16,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(0.8);
 }
+
+:root {
+  --bg-color-light: #e8dcf2;
+  --text-color-light: #000000;
+  --bg-color-dark: #13131a;
+  --text-color-dark: #ffffff;
+}
+
+html.light {
+  --bg-color: var(--bg-color-light);
+  --text-color: var(--text-color-light);
+}
+
+html.dark {
+  --bg-color: var(--bg-color-dark);
+  --text-color: var(--text-color-dark);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

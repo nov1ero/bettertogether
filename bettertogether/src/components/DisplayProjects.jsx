@@ -8,8 +8,17 @@ import { db } from '../../firebaseConfig';
 
 const DisplayProjects = ({ title, projects, isLoading, isSearch }) => {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [ isDarkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
-  const { user } = useStateContext();
+  const { user, theme } = useStateContext();
+
+  useEffect(() => {
+    if (theme === 'light') {
+      setDarkMode(false);
+    } else if (theme === 'dark') {
+      setDarkMode(true);
+    }
+  }, [theme]);
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -48,12 +57,12 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch }) => {
   return (
     <div>
       {isSearch && (
-        <h1 className="font-epilogue font-semibold text-[18px] text-white text-left">
+        <h1 className={`font-epilogue font-semibold text-[18px]${isDarkMode ? 'text-white' : 'text-black  '}  text-left`}>
         {title} ({filteredProjects.length})
       </h1>
       )}
       {!isSearch && filteredProjects.length > 0 && (
-        <h1 className="font-epilogue font-semibold text-[18px] text-white text-left">
+        <h1 className={`font-epilogue font-semibold text-[18px]${isDarkMode ? 'text-white' : 'text-black  '}  text-left`}>
         {title} ({filteredProjects.length})
       </h1>
       )}

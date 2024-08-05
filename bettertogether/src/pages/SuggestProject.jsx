@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,7 +10,8 @@ import { checkIfImage } from '../utils';
 const SuggestProject = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { user, suggestProject } = useStateContext();
+  const [ isDarkMode, setDarkMode] = useState(false);
+  const { user, suggestProject, theme } = useStateContext();
   const [form, setForm] = useState({
     owner: '',
     title: '',
@@ -20,9 +21,18 @@ const SuggestProject = () => {
     image: ''
   });
 
+  console.log("Тема", theme)
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: e.target.value })
   }
+
+  useEffect(() => {
+    if (theme === 'light') {
+      setDarkMode(false);
+    } else if (theme === 'dark') {
+      setDarkMode(true);
+    }
+  }, [theme]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +48,7 @@ const SuggestProject = () => {
         setIsLoading(true)
         await suggestProject(form)
         setIsLoading(false);
-        navigate("/home");
+        navigate('/home');
       } else {
         alert('Provide valid image URL')
         setForm({ ...form, image: '' });
@@ -53,10 +63,10 @@ const SuggestProject = () => {
   ];
 
   return (
-    <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
+    <div className={`flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4 ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} `}>
       {isLoading && <Loader />}
-      <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
-        <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">Отправить Запрос</h1>
+      <div className={`flex justify-center items-center p-[16px] sm:min-w-[380px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#f5f5f5]'} rounded-[10px]`}>
+        <h1 className={`font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] ${isDarkMode ? 'text-white' : 'text-slate-950'} `}>Отправить Запрос</h1>
       </div>
 
       <form onSubmit={handleSubmit} className="w-full mt-[65px] flex flex-col gap-[30px]">
@@ -70,7 +80,7 @@ const SuggestProject = () => {
           />
           <FormField 
             labelName="Описание проекта *"
-            placeholder="описание"
+            placeholder="Описание"
             isTextArea
             value={form.description}
             handleChange={(e) => handleFormFieldChange('description', e)}
@@ -97,6 +107,7 @@ const SuggestProject = () => {
           <FormField 
           labelName="Категория *"
           inputType="select"
+          placeholder="Выберите категорию"
           value={form.category}
           handleChange={(e) => handleFormFieldChange('category', e)}
           options={categoryOptions} // Pass options for select

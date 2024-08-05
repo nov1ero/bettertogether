@@ -19,7 +19,8 @@ const FundCard = ({
   const [isAdmin, setIsAdmin] = useState(false); // State for user role
   const [loading, setLoading] = useState(true); // Loading state
   const [ownerData, setOwnerData] = useState(null); // State for owner data
-  const { user } = useStateContext();
+  const [ isDarkMode, setDarkMode] = useState(false);
+  const { user, theme } = useStateContext();
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -67,13 +68,23 @@ const FundCard = ({
     fetchOwnerData();
   }, [owner]);
 
-  if (loading) return <p>Loading...</p>; 
+  useEffect(() => {
+    if (theme === 'light') {
+      setDarkMode(false);
+    } else if (theme === 'dark') {
+      setDarkMode(true);
+    }
+  }, [theme]);
+
+  if (loading) return <p>Загрузка...</p>; 
 
   const statusColor = approved ? '#1dc071' : '#a8341d';
 
   return (
-    <div className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer" onClick={handleClick}>
-      <img src={image} alt="fund" className="w-full h-[158px] object-cover rounded-[15px]" />
+    <div className={`sm:w-[288px] w-full rounded-[15px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} cursor-pointer" onClick={handleClick}`}>
+      <div className="flex justify-center mt-[7px] mr-[7px] ml-[7px]">
+        <img src={image} alt="fund" className="w-full h-[158px] object-cover rounded-[15px]" />
+      </div>
 
       <div className="flex flex-col p-4">
         <div className="flex flex-row items-center mb-[18px]">
@@ -82,7 +93,7 @@ const FundCard = ({
         </div>
 
         <div className="block">
-          <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate">{title}</h3>
+          <h3 className="font-epilogue font-semibold text-[20px] text-white text-left leading-[26px] truncate">{title}</h3>
           <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">{description}</p>
         </div>
 
