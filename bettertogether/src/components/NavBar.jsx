@@ -5,30 +5,31 @@ import { CustomButton } from './';
 import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
 
-const Navbar = ({ setSearchResults, onSearch }) => {
+const Navbar = ({ setSearchResults, setSearchTerm, onSearch }) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [localSearchTerm, setLocalSearchTerm] = useState('');
   const [isDarkMode, setDarkMode] = useState(false);
   const [results, setResults] = useState([]);
   const [lastDoc, setLastDoc] = useState(null);
   const { signIn, user, searchProjects, logOut, theme } = useStateContext();
 
   const handleSearch = async () => {
-    if (searchTerm.trim() === '') return;
+    if (localSearchTerm.trim() === '') return;
 
-    const { results: searchResults, newLastDoc } = await searchProjects(searchTerm);
+    const { results: searchResults, newLastDoc } = await searchProjects(localSearchTerm);
     setResults(searchResults);
     setLastDoc(newLastDoc);
     setSearchResults(searchResults);
+    setSearchTerm(localSearchTerm); // Set searchTerm in App component
     onSearch(); // Call the onSearch function
   };
 
   const handleLoadMore = async () => {
-    if (searchTerm.trim() === '') return; // Prevent load more if input is empty
+    if (localSearchTerm.trim() === '') return; // Prevent load more if input is empty
 
-    const { results: moreResults, newLastDoc } = await searchProjects(searchTerm, lastDoc);
+    const { results: moreResults, newLastDoc } = await searchProjects(localSearchTerm, lastDoc);
     setResults((prevResults) => [...prevResults, ...moreResults]);
     setLastDoc(newLastDoc);
     setSearchResults((prevResults) => [...prevResults, ...moreResults]);
@@ -59,11 +60,11 @@ const Navbar = ({ setSearchResults, onSearch }) => {
           name="search"
           placeholder="Поиск проектов"
           className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? 'text-white' : 'text-black'} bg-transparent outline-none`}
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={localSearchTerm}
+          onChange={(e) => setLocalSearchTerm(e.target.value)}
         />
         <div
-          className={`w-[72px] h-full rounded-[20px] ${searchTerm.trim() === '' ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${searchTerm.trim() === '' ? 'pointer-events-none' : ''}`}
+          className={`w-[72px] h-full rounded-[20px] ${localSearchTerm.trim() === '' ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${localSearchTerm.trim() === '' ? 'pointer-events-none' : ''}`}
           onClick={handleSearch}
         >
           <img src={search} alt="search" className="w-[15px] h-[15px] object-contain" />

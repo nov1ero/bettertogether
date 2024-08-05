@@ -6,9 +6,9 @@ import { useStateContext } from '../context';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
-const DisplayProjects = ({ title, projects, isLoading, isSearch , isSearched}) => {
+const DisplayProjects = ({ title, projects, isLoading, isSearch, isSearched, handleLoadMore, searchTerm, lastDoc }) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [ isDarkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
   const { user, theme } = useStateContext();
 
@@ -44,36 +44,32 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch , isSearched}) =
     fetchUserRole();
   }, [user]);
 
-  // Filter projects based on the user's role
   const filteredProjects = isAdmin
-    ? projects // Admins see all projects
-    : projects.filter(project => project.approved); // Non-admins see only approved projects
+    ? projects 
+    : projects.filter(project => project.approved); 
 
   const handleProjectClick = (project) => {
     navigate(`/project-details/${encodeURIComponent(project.title)}`, { state: { pId: project.pId } });
     projects = [];
   };
 
-  console.log('Фильтр', filteredProjects)
-
   return (
     <div>
       {!isLoading && filteredProjects.length === 0 && !isSearch && isSearched && (
-          <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818183]">
-            Ничего не найдено.
-          </p>
-        )}
+        <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818183]">
+          Ничего не найдено.
+        </p>
+      )}
       {isSearch && (
         <h1 className={`font-epilogue font-semibold text-[18px]${isDarkMode ? 'text-white' : 'text-black  '}  text-left`}>
-        {title} ({filteredProjects.length})
-      </h1>
+          {title} ({filteredProjects.length})
+        </h1>
       )}
       {!isSearch && filteredProjects.length > 0 && (
         <h1 className={`font-epilogue font-semibold text-[18px]${isDarkMode ? 'text-white' : 'text-black  '}  text-left`}>
-        {title} ({filteredProjects.length})
-      </h1>
+          {title} ({filteredProjects.length})
+        </h1>
       )}
-      
 
       <div className="flex flex-wrap mt-[20px] gap-[26px]">
         {isLoading && (
@@ -94,9 +90,15 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch , isSearched}) =
           />
         ))}
       </div>
-      {!isLoading && filteredProjects.length > 0 && !isSearch && isSearched
-      // Здесь нужна кнопка загрузить еще
-      }
+      {!isLoading && filteredProjects.length > 0 && !isSearch && isSearched && lastDoc && (
+        <button 
+          onClick={handleLoadMore}
+          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded"
+          disabled={!lastDoc} // Disable the button if lastDoc is null
+        >
+          Загрузить еще
+        </button>
+      )}
     </div>
   );
 };
