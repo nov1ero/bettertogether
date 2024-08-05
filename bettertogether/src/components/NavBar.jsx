@@ -5,22 +5,25 @@ import { CustomButton } from './';
 import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
 
-const Navbar = ({ setSearchResults, setSearchTerm, onSearch }) => {
+const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [localSearchTerm, setLocalSearchTerm] = useState('');
   const [isDarkMode, setDarkMode] = useState(false);
   const [results, setResults] = useState([]);
-  const [lastDoc, setLastDoc] = useState(null);
+  const [lastDoc, setLocalLastDoc] = useState(null); // Local state for lastDoc in NavBar
   const { signIn, user, searchProjects, logOut, theme } = useStateContext();
+
+  console.log("NavBar", lastDoc);
 
   const handleSearch = async () => {
     if (localSearchTerm.trim() === '') return;
 
     const { results: searchResults, newLastDoc } = await searchProjects(localSearchTerm);
     setResults(searchResults);
-    setLastDoc(newLastDoc);
+    setLocalLastDoc(newLastDoc);
+    setLastDoc(newLastDoc); // Update lastDoc in App component
     setSearchResults(searchResults);
     setSearchTerm(localSearchTerm); // Set searchTerm in App component
     onSearch(); // Call the onSearch function
@@ -31,7 +34,8 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch }) => {
 
     const { results: moreResults, newLastDoc } = await searchProjects(localSearchTerm, lastDoc);
     setResults((prevResults) => [...prevResults, ...moreResults]);
-    setLastDoc(newLastDoc);
+    setLocalLastDoc(newLastDoc);
+    setLastDoc(newLastDoc); // Update lastDoc in App component
     setSearchResults((prevResults) => [...prevResults, ...moreResults]);
   };
 

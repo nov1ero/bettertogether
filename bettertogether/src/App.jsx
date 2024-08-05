@@ -11,7 +11,7 @@ const App = () => {
   const [lastDoc, setLastDoc] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
-  console.log("Последний Документ", lastDoc)
+  console.log("Последний Документ", lastDoc);
   
   const handleSearch = () => {
     setIsSearched(true);
@@ -38,7 +38,12 @@ const App = () => {
         </div>
 
         <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5">
-          <NavBar setSearchResults={setSearchResults} setSearchTerm={setSearchTerm} onSearch={handleSearch} />
+          <NavBar
+            setSearchResults={setSearchResults}
+            setSearchTerm={setSearchTerm}
+            onSearch={handleSearch}
+            setLastDoc={setLastDoc} // Pass setLastDoc to NavBar
+          />
           <div className="mb-8">
             <DisplayProjects
               title="Результаты поиска"
