@@ -1,30 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
 import { useStateContext } from '../context';
-import { money } from '../assets';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
 
 const SuggestProject = () => {
   const navigate = useNavigate();
+  const [categoryOptions, setCategoryOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [ isDarkMode, setDarkMode] = useState(false);
-  const { user, suggestProject, theme } = useStateContext();
+  const [isDarkMode, setDarkMode] = useState(false);
+  const { user, suggestProject, theme, getSingleCategory } = useStateContext();
   const [form, setForm] = useState({
     owner: '',
     title: '',
     description: '',
     phoneNumber: '', 
     email: '',
-    image: ''
+    image: '',
+    category: ''
   });
 
-  console.log("Тема", theme)
   const handleFormFieldChange = (fieldName, e) => {
-    setForm({ ...form, [fieldName]: e.target.value })
-  }
+    setForm({ ...form, [fieldName]: e.target.value });
+  };
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const categoryData = await getSingleCategory();
+      if (categoryData) {
+        const options = Object.keys(categoryData)
+          .filter(key => key !== 'id')
+          .map(key => ({
+            value: key,
+            label: categoryData[key]
+          }))
+          .sort((a, b) => (a.label === 'Другое' ? 1 : b.label === 'Другое' ? -1 : 0)); // Ensure 'Другое' is last
+        setCategoryOptions(options);
+      }
+    };
+
+    fetchCategory();
+  }, [getSingleCategory]);
 
   useEffect(() => {
     if (theme === 'light') {
@@ -37,30 +53,23 @@ const SuggestProject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log("FORMDATA", form)
-
     if (!user) {
       alert("Нужно авторизоваться.");
       return;
     }
+    
     checkIfImage(form.image, async (exists) => {
-      if(exists) {
-        setIsLoading(true)
-        await suggestProject(form)
+      if (exists) {
+        setIsLoading(true);
+        await suggestProject(form);
         setIsLoading(false);
         navigate('/home');
       } else {
-        alert('Provide valid image URL')
+        alert('Provide valid image URL');
         setForm({ ...form, image: '' });
       }
-    })
-  }
-  const categoryOptions = [
-    { value: 'technology', label: 'Technology' },
-    { value: 'education', label: 'Education' },
-    { value: 'health', label: 'Health' },
-    { value: 'other', label: 'Other' }
-  ];
+    });
+  };
 
   return (
     <div className={`flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4 ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} `}>
@@ -88,50 +97,49 @@ const SuggestProject = () => {
         </div>
 
         <FormField 
-            labelName="Номер телефона *"
-            placeholder="+996 (ххх) хх-хх-хх"
-            inputType="text"
-            value={form.phoneNumber}
-            handleChange={(e) => handleFormFieldChange('phoneNumber', e)}
-          />
-
+          labelName="Номер телефона *"
+          placeholder="+996 (ххх) хх-хх-хх"
+          inputType="text"
+          value={form.phoneNumber}
+          handleChange={(e) => handleFormFieldChange('phoneNumber', e)}
+        />
 
         <div className="flex flex-wrap gap-[40px]">
           <FormField 
-            labelName="Электроннаяя почта *"
+            labelName="Электронная почта *"
             placeholder="Эл. почта"
             inputType="text"
             value={form.email}
             handleChange={(e) => handleFormFieldChange('email', e)}
           />
           <FormField 
-          labelName="Категория *"
-          inputType="select"
-          placeholder="Выберите категорию"
-          value={form.category}
-          handleChange={(e) => handleFormFieldChange('category', e)}
-          options={categoryOptions} // Pass options for select
-        />
+            labelName="Категория *"
+            inputType="select"
+            placeholder="Выберите категорию"
+            value={form.category}
+            handleChange={(e) => handleFormFieldChange('category', e)}
+            options={categoryOptions} // Передача опций для select
+          />
         </div>
 
         <FormField 
-            labelName="Фото Проекта *"
-            placeholder="Вставьте ссылку на фото"
-            inputType="url"
-            value={form.image}
-            handleChange={(e) => handleFormFieldChange('image', e)}
-          />
+          labelName="Фото Проекта *"
+          placeholder="Вставьте ссылку на фото"
+          inputType="url"
+          value={form.image}
+          handleChange={(e) => handleFormFieldChange('image', e)}
+        />
 
-          <div className="flex justify-center items-center mt-[40px]">
-            <CustomButton 
-              btnType="submit"
-              title="Отправить запрос"
-              styles="bg-[#1dc071]"
-            />
-          </div>
+        <div className="flex justify-center items-center mt-[40px]">
+          <CustomButton 
+            btnType="submit"
+            title="Отправить запрос"
+            styles="bg-[#1dc071]"
+          />
+        </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SuggestProject
+export default SuggestProject;

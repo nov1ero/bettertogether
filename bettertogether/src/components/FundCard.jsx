@@ -44,7 +44,6 @@ const FundCard = ({
     fetchUserRole();
   }, [user]);
 
-  console.log("USer", user)
 
   useEffect(() => {
     const fetchOwnerData = async () => {

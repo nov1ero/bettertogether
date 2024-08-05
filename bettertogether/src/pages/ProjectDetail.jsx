@@ -17,13 +17,12 @@ const ProjectDetail = () => {
   const [projectData, setProjectData] = useState(state || {});
   const [formData, setFormData] = useState({ subject: '', message: '' });
   const [formStatus, setFormStatus] = useState('');
-  console.log("Картинка", ownerData)
+  
 
   // Function to fetch project by pId
   const fetchProjectById = async (pId) => {
     try {
       const project = await getProjectDetails(pId);
-      console.log("Проект", project);
       setProjectData(project);
     } catch (error) {
       console.error('Error fetching project by ID:', error);

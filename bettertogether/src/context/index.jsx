@@ -12,7 +12,8 @@ import {
   deleteDoc, 
   orderBy, 
   limit, 
-  startAfter } from 'firebase/firestore';
+  startAfter 
+} from 'firebase/firestore';
 import { provider, db } from '../../firebaseConfig';
 import { 
   getAuth,
@@ -166,41 +167,60 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
-  const searchProjects = async (searchTerm, lastDoc = null, batchSize = 10) => {
-    if (!searchTerm) return [];
-  
+  const searchProjects = async (searchTerm, selectedCategories = [], lastDoc = null, batchSize = 15) => {
+    console.log("selectedCategories", selectedCategories)
     try {
-      // Create the query to fetch projects
-      const projectsRef = collection(db, 'projects');
-      let q = query(projectsRef, orderBy('title'), limit(batchSize));
-  
-      // If there's a last document, start after it for pagination
-      if (lastDoc) {
-        q = query(q, startAfter(lastDoc));
-      }
-  
-      // Fetch all projects
-      const querySnapshot = await getDocs(q);
-  
-      // Normalize search term to lowercase
-      const lowerSearchTerm = searchTerm.toLowerCase();
-  
-      // Process results
-      const results = querySnapshot.docs
-        .map(doc => ({ ...doc.data(), pId: doc.id }))
-        .filter(project => {
-          // Normalize project title to lowercase
-          const lowerTitle = project.title.toLowerCase();
-          return lowerTitle.includes(lowerSearchTerm);
-        });
-  
-      // Determine the last document for pagination
-      const newLastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] || null;
-  
-      return { results, newLastDoc };
+        const projectsRef = collection(db, 'projects');
+        let q = query(projectsRef, orderBy('title'), limit(batchSize));
+
+        if (lastDoc) {
+            q = query(q, startAfter(lastDoc));
+        }
+
+        const querySnapshot = await getDocs(q);
+        let results = querySnapshot.docs.map(doc => ({ ...doc.data(), pId: doc.id }));
+
+        // Фильтрация по категориям
+        if (selectedCategories.length > 0) {
+            results = results.filter(project => 
+                selectedCategories.includes(project.category)
+            );
+        }
+
+        if (searchTerm) {
+            const lowerSearchTerm = searchTerm.toLowerCase();
+            results = results.filter(project => {
+                const lowerTitle = project.title.toLowerCase();
+                return lowerTitle.includes(lowerSearchTerm);
+            });
+        }
+
+        console.log("Filtered Projects", results);
+
+        const newLastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] || null;
+
+        return { results, newLastDoc };
     } catch (error) {
-      console.error('Error searching projects:', error);
-      return { results: [], newLastDoc: null };
+        console.error('Error searching projects:', error);
+        return { results: [], newLastDoc: null };
+    }
+};
+
+
+  const getSingleCategory = async () => {
+    try {
+      const categoriesRef = collection(db, 'categories');
+      const querySnapshot = await getDocs(categoriesRef);
+      if (!querySnapshot.empty) {
+        const categoryDoc = querySnapshot.docs[0];
+        return { id: categoryDoc.id, ...categoryDoc.data() };
+      } else {
+        console.error('No categories found!');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching category:', error);
+      return null;
     }
   };
 
@@ -220,6 +240,7 @@ export const StateContextProvider = ({ children }) => {
         suggestProject,
         getAllProjects,
         getUserProjects,
+        getSingleCategory,
         signIn,
         logOut,
         theme,

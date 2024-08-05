@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../context';
 import { CustomButton } from './';
@@ -8,35 +8,38 @@ import { navlinks } from '../constants';
 const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
+  const [categoryOptions, setCategoryOptions] = useState([]);
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [localSearchTerm, setLocalSearchTerm] = useState('');
   const [isDarkMode, setDarkMode] = useState(false);
   const [results, setResults] = useState([]);
-  const [lastDoc, setLocalLastDoc] = useState(null); // Local state for lastDoc in NavBar
-  const { signIn, user, searchProjects, logOut, theme } = useStateContext();
+  const [lastDoc, setLocalLastDoc] = useState(null);
+  const [showCategories, setShowCategories] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState({});
+  const [categoryNames, setCategoryNames] = useState([]);
+  const { signIn, user, searchProjects, logOut, theme, getSingleCategory } = useStateContext();
 
-  console.log("NavBar", lastDoc);
+  const categoriesRef = useRef(null);
 
-  const handleSearch = async () => {
-    if (localSearchTerm.trim() === '') return;
+  console.log("selectedCategories", categoryNames);
 
-    const { results: searchResults, newLastDoc } = await searchProjects(localSearchTerm);
-    setResults(searchResults);
-    setLocalLastDoc(newLastDoc);
-    setLastDoc(newLastDoc); // Update lastDoc in App component
-    setSearchResults(searchResults);
-    setSearchTerm(localSearchTerm); // Set searchTerm in App component
-    onSearch(); // Call the onSearch function
+  const handleSearchButtonState = () => {
+    const isSearchTermEmpty = localSearchTerm.trim() === '';
+    const areCategoriesEmpty = categoryNames.length === 0;
+
+    return isSearchTermEmpty && areCategoriesEmpty;
   };
 
-  const handleLoadMore = async () => {
-    if (localSearchTerm.trim() === '') return; // Prevent load more if input is empty
+  const handleSearch = async () => {
+    if (localSearchTerm.trim() === '' && categoryNames.length === 0) return;
 
-    const { results: moreResults, newLastDoc } = await searchProjects(localSearchTerm, lastDoc);
-    setResults((prevResults) => [...prevResults, ...moreResults]);
+    const { results: searchResults, newLastDoc } = await searchProjects(localSearchTerm, categoryNames);
+    setResults(searchResults);
     setLocalLastDoc(newLastDoc);
-    setLastDoc(newLastDoc); // Update lastDoc in App component
-    setSearchResults((prevResults) => [...prevResults, ...moreResults]);
+    setLastDoc(newLastDoc);
+    setSearchResults(searchResults);
+    setSearchTerm(localSearchTerm);
+    onSearch();
   };
 
   const handleLogout = async () => {
@@ -51,6 +54,20 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
     }
   };
 
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+
+    setSelectedCategories(prev => {
+      const newCategories = { ...prev };
+      if (checked) {
+        newCategories[name] = true;
+      } else {
+        delete newCategories[name];
+      }
+      return newCategories;
+    });
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && localSearchTerm.trim() !== '') {
       handleSearch();
@@ -61,25 +78,78 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
     setDarkMode(theme === 'dark');
   }, [theme]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (categoriesRef.current && !categoriesRef.current.contains(event.target)) {
+        setShowCategories(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const categoryData = await getSingleCategory();
+
+      if (categoryData) {
+        const options = Object.keys(categoryData)
+          .filter(key => key !== 'id')
+          .map(key => ({
+            value: key,
+            label: categoryData[key]
+          }))
+          .sort((a, b) => (a.label === 'Другое' ? 1 : b.label === 'Другое' ? -1 : 0));
+        setCategoryOptions(options);
+      }
+    };
+
+    fetchCategory();
+  }, [getSingleCategory]);
+
+  useEffect(() => {
+    setCategoryNames(Object.keys(selectedCategories).filter(key => selectedCategories[key]));
+  }, [selectedCategories]);
+
   return (
-    <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
-      <div className={`lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} rounded-[100px]`}>
-        <input
-          type="text"
-          id="search"
-          name="search"
-          placeholder="Поиск проектов"
-          className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? 'text-white' : 'text-black'} bg-transparent outline-none`}
-          value={localSearchTerm}
-          onChange={(e) => setLocalSearchTerm(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <div
-          className={`w-[72px] h-full rounded-[20px] ${localSearchTerm.trim() === '' ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${localSearchTerm.trim() === '' ? 'pointer-events-none' : ''}`}
-          onClick={handleSearch}
-        >
-          <img src={search} alt="search" className="w-[15px] h-[15px] object-contain" />
+    <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6 relative">
+      <div className={`lg:flex-1 flex flex-col max-w-[458px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} rounded-[20px] p-4 relative`}>
+        <div className={`flex flex-row py-2 pl-4 pr-2 h-[52px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} rounded-[100px]`}>
+          <input
+            type="text"
+            id="search"
+            name="search"
+            placeholder="Поиск проектов"
+            className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? 'text-white' : 'text-black'} bg-transparent outline-none`}
+            value={localSearchTerm}
+            onChange={(e) => setLocalSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
+            onFocus={() => setShowCategories(true)}
+          />
+          <div
+            className={`w-[72px] h-full rounded-[20px] ${handleSearchButtonState() ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${handleSearchButtonState() ? 'pointer-events-none' : ''}`}
+            onClick={handleSearch}
+          >
+            <img src={search} alt="search" className="w-[15px] h-[15px] object-contain" />
+          </div>
         </div>
+        {showCategories && (
+          <div ref={categoriesRef} className="absolute top-full left-0 right-0 mt-2 bg-white p-2 rounded-md shadow-md z-10">
+            {categoryOptions.map((option) => (
+              <label key={option.value} className="block">
+                <input
+                  type="checkbox"
+                  name={option.value}
+                  checked={selectedCategories[option.value] || false}
+                  onChange={handleCheckboxChange}
+                  className="mr-2"
+                />
+                {option.label}
+              </label>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="sm:flex hidden flex-row justify-end gap-4">
@@ -103,7 +173,6 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
         )}
       </div>
 
-      {/* Small screen navigation */}
       <div className="sm:hidden flex justify-between items-center relative">
         <Link to="/home">
           <div className={`w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? 'bg-[#2c2f32]' : 'bg-[#e6e6e6]'} flex justify-center items-center cursor-pointer`}>

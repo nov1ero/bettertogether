@@ -4,7 +4,6 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
 
-console.log("ENV", import.meta.env);
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

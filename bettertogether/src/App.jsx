@@ -7,12 +7,13 @@ import { StateContextProvider, useStateContext } from './context';
 const App = () => {
   const { searchProjects } = useStateContext();
   const [searchResults, setSearchResults] = useState([]);
-  const [isSearched, setIsSearched] = useState(false); 
+  const [isSearched, setIsSearched] = useState(false);
   const [lastDoc, setLastDoc] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const location = useLocation();
   console.log("Последний Документ", lastDoc);
-  
+
   const handleSearch = () => {
     setIsSearched(true);
   };
@@ -20,14 +21,14 @@ const App = () => {
   const handleLoadMore = async () => {
     if (!searchResults.length || searchTerm.trim() === '') return; // Prevent load more if no search results or searchTerm is empty
 
-    const { results: moreResults, newLastDoc } = await searchProjects(searchTerm, lastDoc);
+    const { results: moreResults, newLastDoc } = await searchProjects(searchTerm, selectedCategories, lastDoc);
     setSearchResults((prevResults) => [...prevResults, ...moreResults]);
     setLastDoc(newLastDoc);
   };
 
   useEffect(() => {
     setSearchResults([]);
-    setIsSearched(false); 
+    setIsSearched(false);
   }, [location.pathname]);
 
   return (
@@ -42,7 +43,8 @@ const App = () => {
             setSearchResults={setSearchResults}
             setSearchTerm={setSearchTerm}
             onSearch={handleSearch}
-            setLastDoc={setLastDoc} // Pass setLastDoc to NavBar
+            setLastDoc={setLastDoc}
+            setSelectedCategories={setSelectedCategories} // Pass setSelectedCategories to NavBar
           />
           <div className="mb-8">
             <DisplayProjects
@@ -51,8 +53,8 @@ const App = () => {
               isLoading={false}
               isSearch={false}
               isSearched={isSearched}
-              searchTerm={searchTerm} // Pass searchTerm to DisplayProjects
-              handleLoadMore={handleLoadMore} // Pass handleLoadMore to DisplayProjects
+              searchTerm={searchTerm}
+              handleLoadMore={handleLoadMore}
               lastDoc={lastDoc}
             />
           </div>
@@ -72,3 +74,4 @@ const App = () => {
 };
 
 export default App;
+  
