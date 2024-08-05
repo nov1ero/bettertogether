@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../context';
 import { CustomButton, Loader } from '../components';
-import { thirdweb } from '../assets';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
 const ProjectDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { getProjectDetails, user, approveProject, deleteProject } = useStateContext();
+  const { getProjectDetails, user, approveProject, deleteProject, theme } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [ownerData, setOwnerData] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [userName, setUserName] = useState(null);
   const [projectData, setProjectData] = useState(state || {});
   const [formData, setFormData] = useState({ subject: '', message: '' });
   const [formStatus, setFormStatus] = useState('');
-  
+  const [isDarkMode, setDarkMode] = useState(false);
+
+  console.log("userName",userName)
+
+  console.log("ProjectDetails",user)
 
   // Function to fetch project by pId
   const fetchProjectById = async (pId) => {
@@ -35,10 +40,15 @@ const ProjectDetail = () => {
       try {
         const userDocRef = doc(db, 'users', user.uid);
         const userDoc = await getDoc(userDocRef);
+        
         if (userDoc.exists()) {
           const userData = userDoc.data();
+          
           if (userData.roles && userData.roles.includes('admin')) {
             setIsAdmin(true);
+          }
+          if (userData.displayName) {
+            setUserName(userData.displayName);
           }
         }
       } catch (error) {
@@ -59,6 +69,14 @@ const ProjectDetail = () => {
     checkAdminRole();
   }, [user]);
 
+  useEffect(() => {
+    if (theme === 'light') {
+      setDarkMode(false);
+    } else if (theme === 'dark') {
+      setDarkMode(true);
+    }
+  }, [theme]);
+
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,29 +84,34 @@ const ProjectDetail = () => {
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      // Replace with actual email sending logic
-      await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          to: state.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
-      });
 
-      setFormStatus('Email sent successfully!');
-      setFormData({ subject: '', message: '' });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      setFormStatus('Failed to send email.');
-    }
-  };
+    // Your EmailJS service ID, template ID, and Public Key
+    const serviceId = 'service_85cd3ym';
+    const templateId = 'template_382jih7';
+    const publicKey = 'oj4-K8TY-KWvvUOxC';
+
+    // Create a new object that contains dynamic template params
+    const templateParams = {
+      to_email:  ownerData?.email,
+      from_name: userName,
+      subject: formData.subject,
+      to_name: ownerData?.displayName,
+      message: formData.message,
+    };
+
+    // Send the email using EmailJS
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('Email sent successfully!', response);
+        setUserName(null);
+        setFormData({ subject: '', message: '' })
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+      });
+  }
 
   useEffect(() => {
     const fetchOwnerData = async () => {
@@ -168,7 +191,7 @@ const ProjectDetail = () => {
                 <img src={ownerData?.photoURL || ''} alt="user" className="w-[100%] h-[100%] object-fill rounded-full" />
               </div>
               <div>
-                <h4 className="font-epilogue font-semibold text-[14px] text-white break-all">{ownerData?.displayName || ''}</h4>
+                <h4 className={`font-epilogue font-semibold text-[14px] ${isDarkMode ? 'text-white' : 'text-black  '} break-all`}>{ownerData?.displayName || ''}</h4>
                 <p className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]">10 Проектов</p>
               </div>
             </div>
