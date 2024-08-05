@@ -2,8 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../context';
 import { CustomButton } from './';
-import { logo, menu, search } from '../assets';
+import { logo, menu, search, sun } from '../assets';
 import { navlinks } from '../constants';
+
+const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick, isDarkMode }) => {
+  const iconStyles = `w-[48px] h-[48px] rounded-[10px] ${isActive && isActive === name ? (isDarkMode ? 'bg-[#2c2f32]' : 'bg-[#dcdcdc]') : 'bg-transparent'} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles}`;
+  const imgStyles = `w-1/2 h-1/2 ${isActive !== name ? 'grayscale' : ''}`;
+
+  return (
+    <div className={iconStyles} onClick={handleClick}>
+      <img src={imgUrl} alt={name} className={imgStyles} />
+    </div>
+  );
+};
 
 const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
   const navigate = useNavigate();
@@ -17,7 +28,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
   const [showCategories, setShowCategories] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState({});
   const [categoryNames, setCategoryNames] = useState([]);
-  const { signIn, user, searchProjects, logOut, theme, getSingleCategory } = useStateContext();
+  const { signIn, user, searchProjects, logOut, theme, getSingleCategory, toggleTheme } = useStateContext();
 
   const categoriesRef = useRef(null);
 
@@ -161,7 +172,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
         />
 
         {user && user.photoURL ? (
-          <Link to="/profile">
+          <Link to="/bettertogether/profile">
             <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
               <img src={user.photoURL} alt="user" className="w-[100%] h-[100%] rounded-full object-contain" />
             </div>
@@ -174,7 +185,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
       </div>
 
       <div className="sm:hidden flex justify-between items-center relative">
-        <Link to="/home">
+        <Link to="/bettertogether/home">
           <div className={`w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? 'bg-[#2c2f32]' : 'bg-[#e6e6e6]'} flex justify-center items-center cursor-pointer`}>
             <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
           </div>
@@ -199,7 +210,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
                   navigate(link.link);
                   if (link.name === "Выйти") {
                     handleLogout();
-                    navigate("/home");
+                    navigate("/bettertogether/home");
                   }
                 }}
               >
@@ -222,7 +233,14 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
               styles={user ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => user ? navigate('suggest-project') : signIn()}
             />
+            <Icon 
+              styles={`ml-[100px] mr-[20px] bg-[#1c1c24] shadow-secondary ${isDarkMode ? '' : 'bg-[#e6e6e6]'}`} 
+              imgUrl={sun} 
+              handleClick={toggleTheme} 
+              isDarkMode={isDarkMode}
+            />
           </div>
+          
         </div>
       </div>
     </div>
