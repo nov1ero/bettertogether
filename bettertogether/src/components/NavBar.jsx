@@ -10,11 +10,25 @@ const Navbar = ({ setSearchResults }) => {
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const { signIn, user, searchProjects } = useStateContext();
+  const { signIn, user, searchProjects, logOut } = useStateContext();
 
   const handleSearch = async () => {
     const results = await searchProjects(searchTerm);
     setSearchResults(results);
+  };
+
+  const handleLogout = async () => {
+    if (user) { // Check if user is authenticated
+      try {
+        await logOut(); // Call logOut function from AuthContext
+        
+      } catch (error) {
+        console.error('Error logging out:', error);
+        // Handle logout errors gracefully (e.g., display an error message)
+      }
+    }
+    else signIn();
+    
   };
 
   return (
@@ -81,6 +95,10 @@ const Navbar = ({ setSearchResults }) => {
                   setIsActive(link.name);
                   setToggleDrawer(false);
                   navigate(link.link);
+                  if (link.name == "Выйти") {
+                    handleLogout();
+                    navigate("/home");
+                  }
                 }}
               >
                 <img
