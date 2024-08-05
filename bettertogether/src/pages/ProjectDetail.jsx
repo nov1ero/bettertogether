@@ -165,6 +165,9 @@ const ProjectDetail = () => {
   if (!projectData.title) {
     return <Loader />;
   }
+  useEffect(() => {
+    emailjs.init('oj4-K8TY-KWvvUOxC');
+  }, []);
 
   return (
     <div>
