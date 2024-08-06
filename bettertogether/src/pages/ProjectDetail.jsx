@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser'
+import emailjs from '@emailjs/browser';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../context';
 import { CustomButton, Loader } from '../components';
@@ -53,14 +53,17 @@ const ProjectDetail = () => {
     }
   };
 
-  // Fetch project details if not already provided by state
+  // Ensure hooks are called consistently
+  useEffect(() => {
+    emailjs.init('oj4-K8TY-KWvvUOxC');
+  }, []);
+
   useEffect(() => {
     if (!projectData.title && state.pId) {
       fetchProjectById(state.pId);
     }
-  }, [state.pId]);
+  }, [state.pId, projectData.title]);
 
-  // Check admin role when user changes
   useEffect(() => {
     checkAdminRole();
   }, [user]);
@@ -72,6 +75,29 @@ const ProjectDetail = () => {
       setDarkMode(true);
     }
   }, [theme]);
+
+  useEffect(() => {
+    const fetchOwnerData = async () => {
+      if (projectData.owner && projectData.owner.id) {
+        try {
+          const ownerDocRef = doc(db, 'users', projectData.owner.id);
+          const ownerDoc = await getDoc(ownerDocRef);
+          if (ownerDoc.exists()) {
+            setOwnerData(ownerDoc.data());
+          } else {
+            console.log("Owner document not found");
+          }
+        } catch (error) {
+          console.error("Error fetching owner data:", error);
+        }
+      } else if (projectData.owner) {
+        // Assume owner is already a plain object if not a DocumentReference
+        setOwnerData(projectData.owner);
+      }
+    };
+  
+    fetchOwnerData();
+  }, [projectData.owner]);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -115,30 +141,6 @@ const ProjectDetail = () => {
       });
   }
 
-  useEffect(() => {
-    const fetchOwnerData = async () => {
-      if (projectData.owner && projectData.owner.id) {
-        try {
-          const ownerDocRef = doc(db, 'users', projectData.owner.id);
-          const ownerDoc = await getDoc(ownerDocRef);
-          if (ownerDoc.exists()) {
-            setOwnerData(ownerDoc.data());
-          } else {
-            console.log("Owner document not found");
-          }
-        } catch (error) {
-          console.error("Error fetching owner data:", error);
-        }
-      } else if (projectData.owner) {
-        // Assume owner is already a plain object if not a DocumentReference
-        setOwnerData(projectData.owner);
-      }
-    };
-  
-    fetchOwnerData();
-  }, [projectData.owner]);
-  
-
   // Handle project approval
   const handleApproveProject = async () => {
     const result = await approveProject(state.pId);
@@ -151,10 +153,6 @@ const ProjectDetail = () => {
     }
   };
 
-  if (!projectData.title) {
-    return <Loader />;
-  }
-
   const handleDeleteProject = async () => {
     if (window.confirm("Вы уверены что хотите удалить этот проект?")) {
       await deleteProject(state.pId);
@@ -165,9 +163,6 @@ const ProjectDetail = () => {
   if (!projectData.title) {
     return <Loader />;
   }
-  useEffect(() => {
-    emailjs.init('oj4-K8TY-KWvvUOxC');
-  }, []);
 
   return (
     <div>
@@ -211,58 +206,77 @@ const ProjectDetail = () => {
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Контактные данные</h4>
             <div className="mt-[20px]">
-              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">Номер телефона: {projectData.phoneNumber}</p>
-              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">Электронная почта: {projectData.email}</p>
+              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">Номер телефона: {projectData.phone}</p>
             </div>
           </div>
-
-          <form onSubmit={handleSubmit} className="mt-10 flex flex-col gap-4">
-            <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Отправить письмо</h4>
-            <select
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              className="p-2 rounded-md border border-gray-300"
-            >
-              <option value="">Выберите тему</option>
-              <option value="Поддержать проект">Поддержать проект</option>
-              <option value="Стать волонтером в">Стать волонтером</option>
-            </select>
-            <textarea
-              name="message"
-              placeholder="Напишите ваши контактные данные и цель сообщения и с вами свяжутся..."
-              value={formData.message}
-              onChange={handleChange}
-              className="p-2 rounded-md border border-gray-300 h-32"
-            />
-            <CustomButton
-              btnType="submit"
-              title="Отправить"
-              styles="bg-[#8c6dfd]"
-            />
-            {formStatus && <p className="mt-2 text-white">{formStatus}</p>}
+          <div>
+            <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Ресурсы</h4>
+            <div className="mt-[20px]">
+              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">{projectData.resources}</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1">
+          <h4 className={`font-epilogue font-semibold text-[18px] ${isDarkMode ? 'text-white' : 'text-black  '} uppercase`}>Отправить сообщение основателю</h4>
+          <form className="mt-[20px] w-full flex flex-col gap-[30px]" onSubmit={handleSubmit}>
+            <div className="flex flex-col">
+              <label htmlFor="subject" className={`font-epilogue font-medium text-[14px] leading-[22px] ${isDarkMode ? 'text-white' : 'text-black  '} mb-[10px]`}>Тема</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Тема"
+                className={`py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] leading-[22px] ${isDarkMode ? 'text-white' : 'text-black  '} placeholder:text-[#4b5264] rounded-[10px]`}
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="message" className={`font-epilogue font-medium text-[14px] leading-[22px] ${isDarkMode ? 'text-white' : 'text-black  '} mb-[10px]`}>Сообщение</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Сообщение"
+                rows="10"
+                className={`py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] leading-[22px] ${isDarkMode ? 'text-white' : 'text-black  '} placeholder:text-[#4b5264] rounded-[10px]`}
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex justify-center items-center">
+              <button
+                type="submit"
+                className="py-[10px] px-[20px] bg-[#1dc071] rounded-[10px] text-[16px] text-white font-semibold leading-[26px]"
+              >
+                Отправить сообщение
+              </button>
+            </div>
+            {formStatus && <p className="text-center mt-[10px] text-red-500">{formStatus}</p>}
           </form>
 
-          {/* Admin View for Approved Status */}
-          <div>
-            {isAdmin && (
-              <>
+          {isAdmin && (
+            <div className="mt-[20px]">
+              <h4 className={`font-epilogue font-semibold text-[18px] ${isDarkMode ? 'text-white' : 'text-black  '} uppercase`}>Администрирование проекта</h4>
+              <div className="mt-[10px] flex flex-col gap-[10px]">
+                {!projectData.approved && (
+                  <CustomButton
+                    btnType="button"
+                    title="Одобрить проект"
+                    styles="bg-green-500"
+                    handleClick={handleApproveProject}
+                  />
+                )}
                 <CustomButton
                   btnType="button"
-                  title={projectData.approved ? 'Подтверждено' : 'Подтвердить'}
-                  styles={projectData.approved ? 'bg-[#1dc071] mr-4' : 'bg-[#a8341d] mr-4'}
-                  handleClick={() => projectData.approved ? navigate("/bettertogether/home") : handleApproveProject()}
+                  title="Удалить проект"
+                  styles="bg-red-500"
+                  handleClick={handleDeleteProject}
                 />
-                <CustomButton
-                  btnType="button"
-                  title={'Удалить'}
-                  styles={'bg-[#a8341d]'}
-                  handleClick={() => handleDeleteProject()}
-                />
-              </>
-            )}
-          </div>
-
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
