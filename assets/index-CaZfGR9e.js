@@ -32290,10 +32290,13 @@ const ProjectDetail = () => {
     }
   };
   reactExports.useEffect(() => {
+    emailjs.init("oj4-K8TY-KWvvUOxC");
+  }, []);
+  reactExports.useEffect(() => {
     if (!projectData.title && state.pId) {
       fetchProjectById(state.pId);
     }
-  }, [state.pId]);
+  }, [state.pId, projectData.title]);
   reactExports.useEffect(() => {
     checkAdminRole();
   }, [user]);
@@ -32304,6 +32307,26 @@ const ProjectDetail = () => {
       setDarkMode(true);
     }
   }, [theme]);
+  reactExports.useEffect(() => {
+    const fetchOwnerData = async () => {
+      if (projectData.owner && projectData.owner.id) {
+        try {
+          const ownerDocRef = doc(db, "users", projectData.owner.id);
+          const ownerDoc = await getDoc(ownerDocRef);
+          if (ownerDoc.exists()) {
+            setOwnerData(ownerDoc.data());
+          } else {
+            console.log("Owner document not found");
+          }
+        } catch (error) {
+          console.error("Error fetching owner data:", error);
+        }
+      } else if (projectData.owner) {
+        setOwnerData(projectData.owner);
+      }
+    };
+    fetchOwnerData();
+  }, [projectData.owner]);
   const handleChange = (e) => {
     const { name: name2, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name2]: value }));
@@ -32333,26 +32356,6 @@ const ProjectDetail = () => {
       console.error("Error sending email:", error);
     });
   };
-  reactExports.useEffect(() => {
-    const fetchOwnerData = async () => {
-      if (projectData.owner && projectData.owner.id) {
-        try {
-          const ownerDocRef = doc(db, "users", projectData.owner.id);
-          const ownerDoc = await getDoc(ownerDocRef);
-          if (ownerDoc.exists()) {
-            setOwnerData(ownerDoc.data());
-          } else {
-            console.log("Owner document not found");
-          }
-        } catch (error) {
-          console.error("Error fetching owner data:", error);
-        }
-      } else if (projectData.owner) {
-        setOwnerData(projectData.owner);
-      }
-    };
-    fetchOwnerData();
-  }, [projectData.owner]);
   const handleApproveProject = async () => {
     const result = await approveProject(state.pId);
     if (result) {
@@ -32363,9 +32366,6 @@ const ProjectDetail = () => {
       window.location.reload();
     }
   };
-  if (!projectData.title) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {});
-  }
   const handleDeleteProject = async () => {
     if (window.confirm("Вы уверены что хотите удалить этот проект?")) {
       await deleteProject(state.pId);
@@ -32375,9 +32375,6 @@ const ProjectDetail = () => {
   if (!projectData.title) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {});
   }
-  reactExports.useEffect(() => {
-    emailjs.init("oj4-K8TY-KWvvUOxC");
-  }, []);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
     isLoading && /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full flex md:flex-row flex-col mt-10 gap-[30px]", children: [
@@ -32387,91 +32384,104 @@ const ProjectDetail = () => {
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex md:w-[150px] w-full flex-wrap justify-between gap-[30px]" })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-[60px] flex lg:flex-row flex-col gap-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-[2] flex flex-col gap-[40px]", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: `font-epilogue font-semibold text-[18px] ${isDarkMode ? "text-white" : "text-black  "} uppercase`, children: "Основатель" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-[20px] flex flex-row items-center flex-wrap gap-[14px]", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: (ownerData == null ? void 0 : ownerData.photoURL) || "", alt: "user", className: "w-[100%] h-[100%] object-fill rounded-full" }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: `font-epilogue font-semibold text-[14px] ${isDarkMode ? "text-white" : "text-black  "} break-all`, children: (ownerData == null ? void 0 : ownerData.displayName) || "" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]", children: "10 Проектов" })
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-[60px] flex lg:flex-row flex-col gap-5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-[2] flex flex-col gap-[40px]", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: `font-epilogue font-semibold text-[18px] ${isDarkMode ? "text-white" : "text-black  "} uppercase`, children: "Основатель" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-[20px] flex flex-row items-center flex-wrap gap-[14px]", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: (ownerData == null ? void 0 : ownerData.photoURL) || "", alt: "user", className: "w-[100%] h-[100%] object-fill rounded-full" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: `font-epilogue font-semibold text-[14px] ${isDarkMode ? "text-white" : "text-black  "} break-all`, children: (ownerData == null ? void 0 : ownerData.displayName) || "" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]", children: "10 Проектов" })
+            ] })
           ] })
-        ] })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Описание" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-[20px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: projectData.description }) })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Контактные данные" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-[20px]", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: [
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Описание" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-[20px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: projectData.description }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Контактные данные" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-[20px]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: [
             "Номер телефона: ",
-            projectData.phoneNumber
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: [
-            "Электронная почта: ",
-            projectData.email
-          ] })
+            projectData.phone
+          ] }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Ресурсы" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-[20px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: projectData.resources }) })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "mt-10 flex flex-col gap-4", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Отправить письмо" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "select",
-          {
-            name: "subject",
-            value: formData.subject,
-            onChange: handleChange,
-            className: "p-2 rounded-md border border-gray-300",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", children: "Выберите тему" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Поддержать проект", children: "Поддержать проект" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Стать волонтером в", children: "Стать волонтером" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "textarea",
-          {
-            name: "message",
-            placeholder: "Напишите ваши контактные данные и цель сообщения и с вами свяжутся...",
-            value: formData.message,
-            onChange: handleChange,
-            className: "p-2 rounded-md border border-gray-300 h-32"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          CustomButton,
-          {
-            btnType: "submit",
-            title: "Отправить",
-            styles: "bg-[#8c6dfd]"
-          }
-        ),
-        formStatus && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 text-white", children: formStatus })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: isAdmin && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          CustomButton,
-          {
-            btnType: "button",
-            title: projectData.approved ? "Подтверждено" : "Подтвердить",
-            styles: projectData.approved ? "bg-[#1dc071] mr-4" : "bg-[#a8341d] mr-4",
-            handleClick: () => projectData.approved ? navigate("/bettertogether/home") : handleApproveProject()
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          CustomButton,
-          {
-            btnType: "button",
-            title: "Удалить",
-            styles: "bg-[#a8341d]",
-            handleClick: () => handleDeleteProject()
-          }
-        )
-      ] }) })
-    ] }) })
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: `font-epilogue font-semibold text-[18px] ${isDarkMode ? "text-white" : "text-black  "} uppercase`, children: "Отправить сообщение основателю" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { className: "mt-[20px] w-full flex flex-col gap-[30px]", onSubmit: handleSubmit, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { htmlFor: "subject", className: `font-epilogue font-medium text-[14px] leading-[22px] ${isDarkMode ? "text-white" : "text-black  "} mb-[10px]`, children: "Тема" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                type: "text",
+                id: "subject",
+                name: "subject",
+                placeholder: "Тема",
+                className: `py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] leading-[22px] ${isDarkMode ? "text-white" : "text-black  "} placeholder:text-[#4b5264] rounded-[10px]`,
+                value: formData.subject,
+                onChange: handleChange,
+                required: true
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { htmlFor: "message", className: `font-epilogue font-medium text-[14px] leading-[22px] ${isDarkMode ? "text-white" : "text-black  "} mb-[10px]`, children: "Сообщение" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "textarea",
+              {
+                id: "message",
+                name: "message",
+                placeholder: "Сообщение",
+                rows: "10",
+                className: `py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] leading-[22px] ${isDarkMode ? "text-white" : "text-black  "} placeholder:text-[#4b5264] rounded-[10px]`,
+                value: formData.message,
+                onChange: handleChange,
+                required: true
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center items-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "submit",
+              className: "py-[10px] px-[20px] bg-[#1dc071] rounded-[10px] text-[16px] text-white font-semibold leading-[26px]",
+              children: "Отправить сообщение"
+            }
+          ) }),
+          formStatus && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-center mt-[10px] text-red-500", children: formStatus })
+        ] }),
+        isAdmin && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-[20px]", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: `font-epilogue font-semibold text-[18px] ${isDarkMode ? "text-white" : "text-black  "} uppercase`, children: "Администрирование проекта" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-[10px] flex flex-col gap-[10px]", children: [
+            !projectData.approved && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              CustomButton,
+              {
+                btnType: "button",
+                title: "Одобрить проект",
+                styles: "bg-green-500",
+                handleClick: handleApproveProject
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              CustomButton,
+              {
+                btnType: "button",
+                title: "Удалить проект",
+                styles: "bg-red-500",
+                handleClick: handleDeleteProject
+              }
+            )
+          ] })
+        ] })
+      ] })
+    ] })
   ] });
 };
 const checkIfImage = (url, callback) => {
