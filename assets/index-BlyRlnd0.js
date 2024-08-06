@@ -32342,7 +32342,7 @@ const ProjectDetail = () => {
     const templateId = "template_382jih7";
     const publicKey = "oj4-K8TY-KWvvUOxC";
     const templateParams = {
-      to_email: ownerData == null ? void 0 : ownerData.email,
+      to_email: projectData.email,
       from_name: userName,
       subject: formData.subject,
       to_name: ownerData == null ? void 0 : ownerData.displayName,
