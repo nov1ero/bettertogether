@@ -123,7 +123,7 @@ const ProjectDetail = () => {
 
     // Create a new object that contains dynamic template params
     const templateParams = {
-      to_email:  ownerData?.email,
+      to_email:  projectData.email,
       from_name: userName,
       subject: formData.subject,
       to_name: ownerData?.displayName,
