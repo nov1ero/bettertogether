@@ -20,6 +20,8 @@ const ProjectDetail = () => {
   const [formStatus, setFormStatus] = useState('');
   const [isDarkMode, setDarkMode] = useState(false);
 
+  console.log(projectData)
+
   // Function to fetch project by pId
   const fetchProjectById = async (pId) => {
     try {
@@ -206,7 +208,8 @@ const ProjectDetail = () => {
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Контактные данные</h4>
             <div className="mt-[20px]">
-              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">Номер телефона: {projectData.phone}</p>
+              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">Номер телефона: {projectData.phoneNumber}</p>
+              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">Электронная почта: {projectData.email}</p>
             </div>
           </div>
           <div>
