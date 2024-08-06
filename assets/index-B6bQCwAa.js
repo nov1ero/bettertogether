@@ -31616,7 +31616,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
           }
         )
       ] }),
-      showCategories && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: categoriesRef, className: "absolute top-full left-0 right-0 mt-2 bg-white p-2 rounded-md shadow-md z-10", children: categoryOptions.map((option) => /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "block", children: [
+      showCategories && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: categoriesRef, className: `absolute top-full left-0 right-0 mt-2 ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"} p-2 rounded-md shadow-md z-10`, children: categoryOptions.map((option) => /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "block", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "input",
           {
