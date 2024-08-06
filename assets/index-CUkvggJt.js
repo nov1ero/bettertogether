@@ -32262,6 +32262,7 @@ const ProjectDetail = () => {
   const [formData, setFormData] = reactExports.useState({ subject: "", message: "" });
   const [formStatus, setFormStatus] = reactExports.useState("");
   const [isDarkMode, setDarkMode] = reactExports.useState(false);
+  console.log(projectData);
   const fetchProjectById = async (pId) => {
     try {
       const project = await getProjectDetails(pId);
@@ -32402,10 +32403,16 @@ const ProjectDetail = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Контактные данные" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-[20px]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: [
-            "Номер телефона: ",
-            projectData.phone
-          ] }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-[20px]", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: [
+              "Номер телефона: ",
+              projectData.phoneNumber
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: [
+              "Электронная почта: ",
+              projectData.email
+            ] })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Ресурсы" }),
