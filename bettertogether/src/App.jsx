@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Route, Routes } from 'react-router-dom';
 import { ProjectDetail, SuggestProject, Home, Profile, AboutUs, Welcome } from './pages';
-import { DisplayProjects, SideBar, NavBar } from './components';
+import { DisplayProjects, SideBar, NavBar, Footer } from './components';
 import { StateContextProvider, useStateContext } from './context';
 
 const App = () => {
@@ -68,6 +68,7 @@ const App = () => {
           </Routes>
         </div>
       </div>
+      <Footer />
     </StateContextProvider>
   );
 };

@@ -5,3 +5,4 @@ export { default as FormField } from './FormField';
 export { default as Loader } from './Loader';
 export { default as DisplayProjects } from './DisplayProjects';
 export { default as FundCard } from './FundCard';
+export { default as Footer } from './Footer';

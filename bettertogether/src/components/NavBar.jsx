@@ -124,20 +124,20 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6 relative">
       <div className={`lg:flex-1 flex flex-col max-w-[458px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} rounded-[20px] p-4 relative`}>
-        <div className={`flex flex-row py-2 pl-4 pr-2 h-[52px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} rounded-[100px]`}>
+        <div className={`flex flex-row py-2 pl-4 pr-2 h-[25px] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} rounded-[100px] items-center`}>
           <input
             type="text"
             id="search"
             name="search"
             placeholder="Поиск проектов"
-            className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? 'text-white' : 'text-black'} bg-transparent outline-none`}
+            className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? 'text-white' : 'text-black'} bg-transparent outline-none h-[40px]`}
             value={localSearchTerm}
             onChange={(e) => setLocalSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
             onFocus={() => setShowCategories(true)}
           />
           <div
-            className={`w-[72px] h-full rounded-[20px] ${handleSearchButtonState() ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${handleSearchButtonState() ? 'pointer-events-none' : ''}`}
+            className={`w-[72px] h-[40px] rounded-[20px] ${handleSearchButtonState() ? 'bg-[#b0b0b0]' : 'bg-[#4acd8d]'} flex justify-center items-center cursor-pointer ${handleSearchButtonState() ? 'pointer-events-none' : ''}`}
             onClick={handleSearch}
           >
             <img src={search} alt="search" className="w-[15px] h-[15px] object-contain" />
@@ -160,7 +160,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
           </div>
         )}
       </div>
-
+  
       <div className="sm:flex hidden flex-row justify-end gap-4">
         <CustomButton
           btnType="button"
@@ -168,7 +168,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
           styles={user ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => user ? navigate('suggest-project') : signIn()}
         />
-
+  
         {user && user.photoURL ? (
           <Link to="/bettertogether/profile">
             <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
@@ -177,25 +177,25 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
           </Link>
         ) : (
           <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-            <img src={logo} alt="default" className="w-[60%] h-[60%] object-contain" />
+            <img src={logo} alt="default" className="w-[120%] h-[120%] object-contain" />
           </div>
         )}
       </div>
-
+  
       <div className="sm:hidden flex justify-between items-center relative">
         <Link to="/bettertogether/home">
           <div className={`w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? 'bg-[#2c2f32]' : 'bg-[#e6e6e6]'} flex justify-center items-center cursor-pointer`}>
-            <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
+            <img src={logo} alt="user" className="w-[120%] h-[120%] object-contain" />
           </div>
         </Link>
-
+  
         <img
           src={menu}
           alt="menu"
           className="w-[34px] h-[34px] object-contain cursor-pointer"
           onClick={() => setToggleDrawer((prev) => !prev)}
         />
-
+  
         <div className={`absolute top-[60px] right-0 left-0 ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'} z-10 shadow-secondary py-4 ${!toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'} transition-all duration-700`}>
           <ul className="mb-4">
             {navlinks.map((link) => (
@@ -223,7 +223,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
               </li>
             ))}
           </ul>
-
+  
           <div className="flex mx-4">
             <CustomButton
               btnType="button"
@@ -243,6 +243,6 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
       </div>
     </div>
   );
-};
+};  
 
 export default Navbar;
