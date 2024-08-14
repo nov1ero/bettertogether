@@ -31457,7 +31457,7 @@ function useLinkClickHandler(to, _temp) {
 }
 const createCampaign = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_1071_25627)'%3e%3cpath%20d='M17%200C16.7348%200%2016.4804%200.105357%2016.2929%200.292893C16.1054%200.48043%2016%200.734784%2016%201C16%203.949%2013.417%205%2011%205H4C2.93913%205%201.92172%205.42143%201.17157%206.17157C0.421427%206.92172%200%207.93913%200%209L0%2011C0.00218416%2011.5987%200.139462%2012.1893%200.401603%2012.7276C0.663743%2013.2659%201.04399%2013.7381%201.514%2014.109L5.086%2022.081C5.34004%2022.6521%205.75417%2023.1373%206.27827%2023.4779C6.80237%2023.8185%207.41396%2023.9998%208.039%2024C8.53631%2023.9997%209.02565%2023.875%209.46247%2023.6373C9.89929%2023.3996%2010.2697%2023.0564%2010.54%2022.639C10.8104%2022.2215%2010.972%2021.7431%2011.0103%2021.2473C11.0485%2020.7515%2010.9621%2020.2539%2010.759%2019.8L8.559%2015H11C13.417%2015%2016%2016.051%2016%2019C16%2019.2652%2016.1054%2019.5196%2016.2929%2019.7071C16.4804%2019.8946%2016.7348%2020%2017%2020C17.2652%2020%2017.5196%2019.8946%2017.7071%2019.7071C17.8946%2019.5196%2018%2019.2652%2018%2019V1C18%200.734784%2017.8946%200.48043%2017.7071%200.292893C17.5196%200.105357%2017.2652%200%2017%200V0ZM8.937%2020.619C9.00324%2020.7686%209.03109%2020.9323%209.01804%2021.0954C9.005%2021.2585%208.95145%2021.4157%208.86227%2021.5529C8.77309%2021.69%208.65109%2021.8027%208.50733%2021.8808C8.36357%2021.9589%208.20259%2021.9999%208.039%2022C7.80039%2021.9998%207.56697%2021.9304%207.36709%2021.8001C7.1672%2021.6698%207.00945%2021.4842%206.913%2021.266L4.105%2015H6.359L8.937%2020.619ZM16%2014.6C14.5713%2013.4992%2012.8024%2012.9331%2011%2013H4C3.46957%2013%202.96086%2012.7893%202.58579%2012.4142C2.21071%2012.0391%202%2011.5304%202%2011V9C2%208.46957%202.21071%207.96086%202.58579%207.58579C2.96086%207.21071%203.46957%207%204%207H11C12.8018%207.0683%2014.5706%206.50403%2016%205.405V14.6ZM23.9%2015.452C23.8413%2015.5696%2023.7601%2015.6744%2023.6609%2015.7606C23.5617%2015.8467%2023.4465%2015.9125%2023.3218%2015.9541C23.1972%2015.9957%2023.0656%2016.0123%2022.9345%2016.0031C22.8035%2015.9938%2022.6755%2015.9588%2022.558%2015.9L20.558%2014.9C20.3206%2014.7814%2020.1401%2014.5735%2020.0561%2014.3218C19.972%2014.0701%2019.9915%2013.7954%2020.11%2013.558C20.2286%2013.3206%2020.4365%2013.1401%2020.6882%2013.0561C20.9399%2012.972%2021.2146%2012.9914%2021.452%2013.11L23.452%2014.11C23.6881%2014.2285%2023.8678%2014.4356%2023.9518%2014.6861C24.0357%2014.9366%2024.0171%2015.2102%2023.9%2015.447V15.452ZM20.11%206.452C20.0512%206.33448%2020.0162%206.20653%2020.0069%206.07546C19.9977%205.9444%2020.0143%205.81279%2020.0559%205.68816C20.0975%205.56353%2020.1633%205.44832%2020.2494%205.34912C20.3356%205.24991%2020.4404%205.16866%2020.558%205.11L22.558%204.11C22.7954%203.99145%2023.0701%203.97205%2023.3218%204.05606C23.5735%204.14008%2023.7815%204.32063%2023.9%204.558C24.0186%204.79537%2024.038%205.07011%2023.9539%205.32178C23.8699%205.57346%2023.6894%205.78145%2023.452%205.9L21.452%206.9C21.3345%206.95876%2021.2065%206.99378%2021.0755%207.00306C20.9444%207.01234%2020.8128%206.99571%2020.6882%206.9541C20.5635%206.9125%2020.4483%206.84674%2020.3491%206.76058C20.2499%206.67443%2020.1687%206.56957%2020.11%206.452V6.452ZM20%2010C20%209.73478%2020.1054%209.48043%2020.2929%209.29289C20.4804%209.10536%2020.7348%209%2021%209H23C23.2652%209%2023.5196%209.10536%2023.7071%209.29289C23.8946%209.48043%2024%209.73478%2024%2010C24%2010.2652%2023.8946%2010.5196%2023.7071%2010.7071C23.5196%2010.8946%2023.2652%2011%2023%2011H21C20.7348%2011%2020.4804%2010.8946%2020.2929%2010.7071C20.1054%2010.5196%2020%2010.2652%2020%2010Z'%20fill='%231DC071'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_1071_25627'%3e%3crect%20width='24'%20height='24'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e";
 const dashboard = "data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M1%204.5C1%201.87479%201.02811%201%204.5%201C7.97189%201%208%201.87479%208%204.5C8%207.12521%208.01107%208%204.5%208C0.988927%208%201%207.12521%201%204.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M12%204.5C12%201.87479%2012.0281%201%2015.5%201C18.9719%201%2019%201.87479%2019%204.5C19%207.12521%2019.0111%208%2015.5%208C11.9889%208%2012%207.12521%2012%204.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M1%2015.5C1%2012.8748%201.02811%2012%204.5%2012C7.97189%2012%208%2012.8748%208%2015.5C8%2018.1252%208.01107%2019%204.5%2019C0.988927%2019%201%2018.1252%201%2015.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M12%2015.5C12%2012.8748%2012.0281%2012%2015.5%2012C18.9719%2012%2019%2012.8748%2019%2015.5C19%2018.1252%2019.0111%2019%2015.5%2019C11.9889%2019%2012%2018.1252%2012%2015.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e";
-const logo = "data:image/svg+xml,%3csvg%20width='28'%20height='24'%20viewBox='0%200%2028%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M3.18595%209.23478C1.8487%206.89136%202.58741%203.92689%204.83591%202.61345C7.0844%201.30002%209.99122%202.13499%2011.3285%204.47841L17.1985%2014.7652C18.5358%2017.1086%2017.797%2020.0731%2015.5485%2021.3865C13.3001%2022.6999%2010.3932%2021.865%209.05598%2019.5215L3.18595%209.23478Z'%20fill='url(%23paint0_linear_2290_2172)'/%3e%3cpath%20d='M27.2349%206.6917C27.2349%209.32347%2025.1345%2011.4569%2022.5435%2011.4569C19.9525%2011.4569%2017.8521%209.32347%2017.8521%206.6917C17.8521%204.05992%2019.9525%201.92645%2022.5435%201.92645C25.1345%201.92645%2027.2349%204.05992%2027.2349%206.6917Z'%20fill='url(%23paint1_linear_2290_2172)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2290_2172'%20x1='4.83591'%20y1='2.61345'%20x2='15.441'%20y2='21.0019'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%231DC071'/%3e%3cstop%20offset='1'%20stop-color='%2377D9AA'/%3e%3c/linearGradient%3e%3clinearGradient%20id='paint1_linear_2290_2172'%20x1='22.5435'%20y1='1.92645'%20x2='22.5205'%20y2='11.2863'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%231DC071'/%3e%3cstop%20offset='1'%20stop-color='%2377D9AA'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e";
+const logo = "/bettertogether/assets/BetterTogether_logo-B_PFQvS6.png";
 const logout = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5%206.64513V5.551C5%203.43076%205%202.37064%205.67965%201.77328C6.35931%201.17591%207.41066%201.31197%209.51337%201.58408L16.77%202.52318C19.2611%202.84556%2020.5067%203.00675%2021.2533%203.85626C22%204.70577%2022%205.9617%2022%208.47356V15.5264C22%2018.0383%2022%2019.2942%2021.2533%2020.1437C20.5067%2020.9933%2019.2611%2021.1544%2016.77%2021.4768L9.51337%2022.4159C7.41066%2022.688%206.35931%2022.8241%205.67965%2022.2267C5%2021.6294%205%2020.5692%205%2018.449V17.5726'%20stroke='%231DC071'%20stroke-width='2'/%3e%3cpath%20d='M15%2012L15.8107%2011.4145L16.2335%2012L15.8107%2012.5855L15%2012ZM1%2013C0.447715%2013%200%2012.5523%200%2012C0%2011.4477%200.447715%2011%201%2011V13ZM11.4773%205.41451L15.8107%2011.4145L14.1893%2012.5855L9.85599%206.58549L11.4773%205.41451ZM15.8107%2012.5855L11.4773%2018.5855L9.85599%2017.4145L14.1893%2011.4145L15.8107%2012.5855ZM15%2013H1V11H15V13Z'%20fill='%231DC071'/%3e%3c/svg%3e";
 const payment = "/bettertogether/assets/payment-4tPaVi8n.svg";
 const profile = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20cx='12'%20cy='9'%20r='3'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'/%3e%3ccircle%20cx='12'%20cy='12'%20r='11'%20stroke='%231DC071'%20stroke-width='2'/%3e%3cpath%20d='M19%2020C18.5871%2018.8525%2017.6773%2017.8384%2016.4117%2017.1152C15.146%2016.392%2013.5953%2016%2012%2016C10.4047%2016%208.85398%2016.392%207.58835%2017.1152C6.32271%2017.8384%205.41289%2018.8525%205%2020'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'/%3e%3c/svg%3e";
@@ -31592,7 +31592,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
   }, [selectedCategories]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6 relative", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `lg:flex-1 flex flex-col max-w-[458px] ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"} rounded-[20px] p-4 relative`, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `flex flex-row py-2 pl-4 pr-2 h-[52px] ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"} rounded-[100px]`, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `flex flex-row py-2 pl-4 pr-2 h-[25px] ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"} rounded-[100px] items-center`, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "input",
           {
@@ -31600,7 +31600,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
             id: "search",
             name: "search",
             placeholder: "Поиск проектов",
-            className: `flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? "text-white" : "text-black"} bg-transparent outline-none`,
+            className: `flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isDarkMode ? "text-white" : "text-black"} bg-transparent outline-none h-[40px]`,
             value: localSearchTerm,
             onChange: (e) => setLocalSearchTerm(e.target.value),
             onKeyDown: handleKeyDown,
@@ -31610,7 +31610,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: `w-[72px] h-full rounded-[20px] ${handleSearchButtonState() ? "bg-[#b0b0b0]" : "bg-[#4acd8d]"} flex justify-center items-center cursor-pointer ${handleSearchButtonState() ? "pointer-events-none" : ""}`,
+            className: `w-[72px] h-[40px] rounded-[20px] ${handleSearchButtonState() ? "bg-[#b0b0b0]" : "bg-[#4acd8d]"} flex justify-center items-center cursor-pointer ${handleSearchButtonState() ? "pointer-events-none" : ""}`,
             onClick: handleSearch,
             children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: search, alt: "search", className: "w-[15px] h-[15px] object-contain" })
           }
@@ -31640,10 +31640,10 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
           handleClick: () => user ? navigate("suggest-project") : signIn()
         }
       ),
-      user && user.photoURL ? /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/bettertogether/profile", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: user.photoURL, alt: "user", className: "w-[100%] h-[100%] rounded-full object-contain" }) }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "default", className: "w-[60%] h-[60%] object-contain" }) })
+      user && user.photoURL ? /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/bettertogether/profile", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: user.photoURL, alt: "user", className: "w-[100%] h-[100%] rounded-full object-contain" }) }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "default", className: "w-[120%] h-[120%] object-contain" }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:hidden flex justify-between items-center relative", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/bettertogether/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? "bg-[#2c2f32]" : "bg-[#e6e6e6]"} flex justify-center items-center cursor-pointer`, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "user", className: "w-[60%] h-[60%] object-contain" }) }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/bettertogether/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? "bg-[#2c2f32]" : "bg-[#e6e6e6]"} flex justify-center items-center cursor-pointer`, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "user", className: "w-[120%] h-[120%] object-contain" }) }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "img",
         {
@@ -31706,8 +31706,9 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
   ] });
 };
 const Icon = ({ styles, name: name2, imgUrl, isActive, disabled, handleClick, isDarkMode }) => {
+  const isLogo = imgUrl === logo;
   const iconStyles = `w-[48px] h-[48px] rounded-[10px] ${isActive && isActive === name2 ? isDarkMode ? "bg-[#2c2f32]" : "bg-[#dcdcdc]" : "bg-transparent"} flex justify-center items-center ${!disabled && "cursor-pointer"} ${styles}`;
-  const imgStyles = `w-1/2 h-1/2 ${isActive !== name2 ? "grayscale" : ""}`;
+  const imgStyles = isLogo ? "w-[120%] h-[120%]" : `w-1/2 h-1/2 ${isActive !== name2 ? "grayscale" : ""}`;
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: iconStyles, onClick: handleClick, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: imgUrl, alt: name2, className: imgStyles }) });
 };
 const Sidebar = () => {
@@ -32004,6 +32005,19 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch, isSearched, han
       }
     )
   ] });
+};
+const Footer = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "w-full bg-gray-800 text-white py-6 flex flex-col items-center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto text-center", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm", children: [
+      "© ",
+      (/* @__PURE__ */ new Date()).getFullYear(),
+      " BetterTogether. All rights reserved."
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+      "Email: ",
+      /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "mailto:dobro@apake.kg", className: "text-blue-400", children: "bettertogether598@gmail.com" })
+    ] }) })
+  ] }) });
 };
 const Home = () => {
   const { getAllProjects } = useStateContext();
@@ -32746,42 +32760,45 @@ const App = () => {
     setSearchResults([]);
     setIsSearched(false);
   }, [location2.pathname]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(StateContextProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative sm:-8 p-4 min-h-screen flex flex-row bg-bg-color text-text-color", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "sm:flex hidden mr-10 relative", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sidebar, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Navbar,
-        {
-          setSearchResults,
-          setSearchTerm,
-          onSearch: handleSearch,
-          setLastDoc,
-          setSelectedCategories
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        DisplayProjects,
-        {
-          title: "Результаты поиска",
-          projects: searchResults,
-          isLoading: false,
-          isSearch: false,
-          isSearched,
-          searchTerm,
-          handleLoadMore,
-          lastDoc
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/home", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Home, {}) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether", element: /* @__PURE__ */ jsxRuntimeExports.jsx(WelcomePage, {}) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/about_us", element: /* @__PURE__ */ jsxRuntimeExports.jsx(AboutUs, {}) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/profile", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Profile, {}) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/suggest-project", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SuggestProject, {}) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/project-details/:title", element: /* @__PURE__ */ jsxRuntimeExports.jsx(ProjectDetail, {}) })
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(StateContextProvider, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative sm:-8 p-4 min-h-screen flex flex-row bg-bg-color text-text-color", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "sm:flex hidden mr-10 relative", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sidebar, {}) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Navbar,
+          {
+            setSearchResults,
+            setSearchTerm,
+            onSearch: handleSearch,
+            setLastDoc,
+            setSelectedCategories
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-8", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          DisplayProjects,
+          {
+            title: "Результаты поиска",
+            projects: searchResults,
+            isLoading: false,
+            isSearch: false,
+            isSearched,
+            searchTerm,
+            handleLoadMore,
+            lastDoc
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/home", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Home, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether", element: /* @__PURE__ */ jsxRuntimeExports.jsx(WelcomePage, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/about_us", element: /* @__PURE__ */ jsxRuntimeExports.jsx(AboutUs, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/profile", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Profile, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/suggest-project", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SuggestProject, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/project-details/:title", element: /* @__PURE__ */ jsxRuntimeExports.jsx(ProjectDetail, {}) })
+        ] })
       ] })
-    ] })
-  ] }) });
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
+  ] });
 };
 client.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(BrowserRouter, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(StateContextProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) }) }) })
