@@ -32427,10 +32427,6 @@ const ProjectDetail = () => {
               projectData.email
             ] })
           ] })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-epilogue font-semibold text-[18px] text-white uppercase", children: "Ресурсы" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-[20px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify", children: projectData.resources }) })
         ] })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
