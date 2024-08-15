@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStateContext } from '../context';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const WelcomePage = () => {
+  const { theme } = useStateContext();
+  const [isDarkMode, setDarkMode] = useState(false);
+
   const navigate = useNavigate();
 
   const handleNavigateHome = () => {
     navigate("/home"); // Замените "/home" на ваш маршрут для главной страницы
   };
+
+  useEffect(() => {
+    if (theme === 'light') {
+      setDarkMode(false);
+    } else if (theme === 'dark') {
+      setDarkMode(true);
+    }
+  }, [theme]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -18,16 +30,16 @@ const WelcomePage = () => {
 
       <main className="container mx-auto px-4 py-10 flex-grow">
         <section className="text-center mb-10">
-          <h2 className="text-2xl font-semibold text-white mb-4">Добро пожаловать на наш сайт!</h2>
-          <p className="text-lg text-[#bdbdbd]">
-            Мы рады видеть вас на нашем сайте. Здесь вы найдете множество интересных материалов и возможностей.
+          <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-white' : 'text-black  '} mb-4`}>Добро пожаловать в BetterTogether!</h2>
+          <p className={`text-lg ${isDarkMode ? 'text-[#bdbdbd]' : 'text-black  '}`}>
+            Наша платформа - это ваш путь к достижению значимых результатов в Кыргызстане. Независимо от того, хотите ли вы стать волонтером, получить финансирование для проекта или поддержать инициативы, которые находят у вас отклик, BetterTogether предлагает все необходимое, чтобы внести свой вклад в позитивные изменения. Присоединяйтесь к нам в построении будущего, полного возможностей и равенства для всех. Вместе мы сможем создать лучший мир, начав прямо здесь и прямо сейчас.
           </p>
         </section>
 
         <section className="text-center">
           <button
             onClick={handleNavigateHome}
-            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700"
+            className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700"
           >
             Перейти на главную
           </button>

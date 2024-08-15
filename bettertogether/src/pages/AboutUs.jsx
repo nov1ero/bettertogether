@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStateContext } from '../context';
+
 
 const AboutUs = () => {
+  const { theme } = useStateContext();
+  const [isDarkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (theme === 'light') {
+      setDarkMode(false);
+    } else if (theme === 'dark') {
+      setDarkMode(true);
+    }
+  }, [theme]);
+
+
   return (
     <div >
-      <header className="w-full bg-grey-600 text-white py-6">
+      <header className={`w-full bg-grey-600 ${isDarkMode ? 'text-white' : 'text-black  '} py-6`}>
         <div className="container mx-auto flex justify-center">
           <h1 className="text-3xl font-bold">О Нас</h1>
         </div>
@@ -11,8 +25,8 @@ const AboutUs = () => {
 
       <main className="container mx-auto px-4 py-10">
         <section className="text-center mb-10">
-          <h2 className="text-2xl font-semibold text-white mb-4">О BetterTogether</h2>
-          <p className="text-lg text-[#bdbdbd]">
+          <h2 className={`text-2xl font-semibold ${isDarkMode ? 'text-white' : 'text-black  '} mb-4`}>BetterTogether</h2>
+          <p className={`text-lg ${isDarkMode ? 'text-[#bdbdbd]' : 'text-black  '}`}>
             BetterTogether — это уникальная платформа, созданная для того, чтобы стать мостом между волонтерами, инвесторами и социальными проектами в Кыргызстане. Наша цель — объединить усилия тех, кто стремится к позитивным изменениям, с теми, кто готов поддержать их своими ресурсами и временем.
           </p>
         </section>

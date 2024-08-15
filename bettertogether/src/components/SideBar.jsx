@@ -41,9 +41,9 @@ const Sidebar = () => {
 
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
-      <div className={`flex justify-between items-center flex-col rounded-[7px] sticky  h-[7.5vh] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'}`}>
+      <div className={`flex justify-between items-center flex-col rounded-[7px] sticky  h-[9.8vh] ${isDarkMode ? 'bg-[#1c1c24]' : 'bg-[#e6e6e6]'}`}>
         <Link to="/home">
-          <Icon styles="w-[52px] h-[52px] bg-[#2c2f32]" imgUrl={logo} />
+          <Icon styles="w-[80px] h-[70px] bg-[#2c2f32]" imgUrl={logo} />
         </Link>
       </div>
 
