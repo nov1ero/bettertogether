@@ -69,7 +69,7 @@ const SuggestProject = () => {
         setIsLoading(true);
         await suggestProject(form);
         setIsLoading(false);
-        navigate('/bettertogether/home');
+        navigate('/home');
       } else {
         alert('Provide valid image URL');
         setForm({ ...form, image: '' });

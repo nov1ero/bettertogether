@@ -4,35 +4,35 @@ export const navlinks = [
   {
     name: 'Главная',
     imgUrl: dashboard,
-    link: '/bettertogether/home',
+    link: '/home',
   },
   {
     name: 'Отправить запрос',
     imgUrl: createCampaign,
-    link: '/bettertogether/suggest-project',
+    link: '/suggest-project',
   },
   
   // {
   //   name: 'withdraw',
   //   imgUrl: withdraw,
-  //   link: "/bettertogether/home",
+  //   link: "/home",
   //   disabled: true,
   // },
   {
     name: 'Мои проекты',
     imgUrl: profile,
-    link: '/bettertogether/profile',
+    link: '/profile',
   },
   {
     name: 'Выйти',
     imgUrl: logout,
-    link: '/bettertogether/home',
+    link: '/home',
     // disabled: true,
   },
   {
     name: 'О нас',
     imgUrl: payment,
-    link: '/bettertogether/about_us',
+    link: '/about_us',
     
   },
 ];

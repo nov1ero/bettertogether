@@ -4,7 +4,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default defineConfig({
   plugins: [react(), nodeResolve()],
-  base: "/bettertogether/",
+  base: "/",
   define: {
     global: "globalThis",
     "process.env": {},
@@ -16,3 +16,4 @@ export default defineConfig({
     minify: false,
   },
 });
+

@@ -170,7 +170,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
         />
   
         {user && user.photoURL ? (
-          <Link to="/bettertogether/profile">
+          <Link to="/profile">
             <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
               <img src={user.photoURL} alt="user" className="w-[100%] h-[100%] rounded-full object-contain" />
             </div>
@@ -183,7 +183,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
       </div>
   
       <div className="sm:hidden flex justify-between items-center relative">
-        <Link to="/bettertogether/home">
+        <Link to="/home">
           <div className={`w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? 'bg-[#2c2f32]' : 'bg-[#e6e6e6]'} flex justify-center items-center cursor-pointer`}>
             <img src={logo} alt="user" className="w-[120%] h-[120%] object-contain" />
           </div>
@@ -208,7 +208,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
                   navigate(link.link);
                   if (link.name === "Выйти") {
                     handleLogout();
-                    navigate("/bettertogether/home");
+                    navigate("/home");
                   }
                 }}
               >

@@ -158,7 +158,7 @@ const ProjectDetail = () => {
   const handleDeleteProject = async () => {
     if (window.confirm("Вы уверены что хотите удалить этот проект?")) {
       await deleteProject(state.pId);
-      navigate("/bettertogether/home"); // Redirect after deletion
+      navigate("/home"); // Redirect after deletion
     }
   };
 
