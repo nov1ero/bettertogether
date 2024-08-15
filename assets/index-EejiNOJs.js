@@ -31457,9 +31457,9 @@ function useLinkClickHandler(to, _temp) {
 }
 const createCampaign = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_1071_25627)'%3e%3cpath%20d='M17%200C16.7348%200%2016.4804%200.105357%2016.2929%200.292893C16.1054%200.48043%2016%200.734784%2016%201C16%203.949%2013.417%205%2011%205H4C2.93913%205%201.92172%205.42143%201.17157%206.17157C0.421427%206.92172%200%207.93913%200%209L0%2011C0.00218416%2011.5987%200.139462%2012.1893%200.401603%2012.7276C0.663743%2013.2659%201.04399%2013.7381%201.514%2014.109L5.086%2022.081C5.34004%2022.6521%205.75417%2023.1373%206.27827%2023.4779C6.80237%2023.8185%207.41396%2023.9998%208.039%2024C8.53631%2023.9997%209.02565%2023.875%209.46247%2023.6373C9.89929%2023.3996%2010.2697%2023.0564%2010.54%2022.639C10.8104%2022.2215%2010.972%2021.7431%2011.0103%2021.2473C11.0485%2020.7515%2010.9621%2020.2539%2010.759%2019.8L8.559%2015H11C13.417%2015%2016%2016.051%2016%2019C16%2019.2652%2016.1054%2019.5196%2016.2929%2019.7071C16.4804%2019.8946%2016.7348%2020%2017%2020C17.2652%2020%2017.5196%2019.8946%2017.7071%2019.7071C17.8946%2019.5196%2018%2019.2652%2018%2019V1C18%200.734784%2017.8946%200.48043%2017.7071%200.292893C17.5196%200.105357%2017.2652%200%2017%200V0ZM8.937%2020.619C9.00324%2020.7686%209.03109%2020.9323%209.01804%2021.0954C9.005%2021.2585%208.95145%2021.4157%208.86227%2021.5529C8.77309%2021.69%208.65109%2021.8027%208.50733%2021.8808C8.36357%2021.9589%208.20259%2021.9999%208.039%2022C7.80039%2021.9998%207.56697%2021.9304%207.36709%2021.8001C7.1672%2021.6698%207.00945%2021.4842%206.913%2021.266L4.105%2015H6.359L8.937%2020.619ZM16%2014.6C14.5713%2013.4992%2012.8024%2012.9331%2011%2013H4C3.46957%2013%202.96086%2012.7893%202.58579%2012.4142C2.21071%2012.0391%202%2011.5304%202%2011V9C2%208.46957%202.21071%207.96086%202.58579%207.58579C2.96086%207.21071%203.46957%207%204%207H11C12.8018%207.0683%2014.5706%206.50403%2016%205.405V14.6ZM23.9%2015.452C23.8413%2015.5696%2023.7601%2015.6744%2023.6609%2015.7606C23.5617%2015.8467%2023.4465%2015.9125%2023.3218%2015.9541C23.1972%2015.9957%2023.0656%2016.0123%2022.9345%2016.0031C22.8035%2015.9938%2022.6755%2015.9588%2022.558%2015.9L20.558%2014.9C20.3206%2014.7814%2020.1401%2014.5735%2020.0561%2014.3218C19.972%2014.0701%2019.9915%2013.7954%2020.11%2013.558C20.2286%2013.3206%2020.4365%2013.1401%2020.6882%2013.0561C20.9399%2012.972%2021.2146%2012.9914%2021.452%2013.11L23.452%2014.11C23.6881%2014.2285%2023.8678%2014.4356%2023.9518%2014.6861C24.0357%2014.9366%2024.0171%2015.2102%2023.9%2015.447V15.452ZM20.11%206.452C20.0512%206.33448%2020.0162%206.20653%2020.0069%206.07546C19.9977%205.9444%2020.0143%205.81279%2020.0559%205.68816C20.0975%205.56353%2020.1633%205.44832%2020.2494%205.34912C20.3356%205.24991%2020.4404%205.16866%2020.558%205.11L22.558%204.11C22.7954%203.99145%2023.0701%203.97205%2023.3218%204.05606C23.5735%204.14008%2023.7815%204.32063%2023.9%204.558C24.0186%204.79537%2024.038%205.07011%2023.9539%205.32178C23.8699%205.57346%2023.6894%205.78145%2023.452%205.9L21.452%206.9C21.3345%206.95876%2021.2065%206.99378%2021.0755%207.00306C20.9444%207.01234%2020.8128%206.99571%2020.6882%206.9541C20.5635%206.9125%2020.4483%206.84674%2020.3491%206.76058C20.2499%206.67443%2020.1687%206.56957%2020.11%206.452V6.452ZM20%2010C20%209.73478%2020.1054%209.48043%2020.2929%209.29289C20.4804%209.10536%2020.7348%209%2021%209H23C23.2652%209%2023.5196%209.10536%2023.7071%209.29289C23.8946%209.48043%2024%209.73478%2024%2010C24%2010.2652%2023.8946%2010.5196%2023.7071%2010.7071C23.5196%2010.8946%2023.2652%2011%2023%2011H21C20.7348%2011%2020.4804%2010.8946%2020.2929%2010.7071C20.1054%2010.5196%2020%2010.2652%2020%2010Z'%20fill='%231DC071'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_1071_25627'%3e%3crect%20width='24'%20height='24'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e";
 const dashboard = "data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M1%204.5C1%201.87479%201.02811%201%204.5%201C7.97189%201%208%201.87479%208%204.5C8%207.12521%208.01107%208%204.5%208C0.988927%208%201%207.12521%201%204.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M12%204.5C12%201.87479%2012.0281%201%2015.5%201C18.9719%201%2019%201.87479%2019%204.5C19%207.12521%2019.0111%208%2015.5%208C11.9889%208%2012%207.12521%2012%204.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M1%2015.5C1%2012.8748%201.02811%2012%204.5%2012C7.97189%2012%208%2012.8748%208%2015.5C8%2018.1252%208.01107%2019%204.5%2019C0.988927%2019%201%2018.1252%201%2015.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M12%2015.5C12%2012.8748%2012.0281%2012%2015.5%2012C18.9719%2012%2019%2012.8748%2019%2015.5C19%2018.1252%2019.0111%2019%2015.5%2019C11.9889%2019%2012%2018.1252%2012%2015.5Z'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e";
-const logo = "/bettertogether/assets/BetterTogether_logo-B_PFQvS6.png";
+const logo = "/assets/BetterTogether_logo-B_PFQvS6.png";
 const logout = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5%206.64513V5.551C5%203.43076%205%202.37064%205.67965%201.77328C6.35931%201.17591%207.41066%201.31197%209.51337%201.58408L16.77%202.52318C19.2611%202.84556%2020.5067%203.00675%2021.2533%203.85626C22%204.70577%2022%205.9617%2022%208.47356V15.5264C22%2018.0383%2022%2019.2942%2021.2533%2020.1437C20.5067%2020.9933%2019.2611%2021.1544%2016.77%2021.4768L9.51337%2022.4159C7.41066%2022.688%206.35931%2022.8241%205.67965%2022.2267C5%2021.6294%205%2020.5692%205%2018.449V17.5726'%20stroke='%231DC071'%20stroke-width='2'/%3e%3cpath%20d='M15%2012L15.8107%2011.4145L16.2335%2012L15.8107%2012.5855L15%2012ZM1%2013C0.447715%2013%200%2012.5523%200%2012C0%2011.4477%200.447715%2011%201%2011V13ZM11.4773%205.41451L15.8107%2011.4145L14.1893%2012.5855L9.85599%206.58549L11.4773%205.41451ZM15.8107%2012.5855L11.4773%2018.5855L9.85599%2017.4145L14.1893%2011.4145L15.8107%2012.5855ZM15%2013H1V11H15V13Z'%20fill='%231DC071'/%3e%3c/svg%3e";
-const payment = "/bettertogether/assets/payment-4tPaVi8n.svg";
+const payment = "/assets/payment-4tPaVi8n.svg";
 const profile = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20cx='12'%20cy='9'%20r='3'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'/%3e%3ccircle%20cx='12'%20cy='12'%20r='11'%20stroke='%231DC071'%20stroke-width='2'/%3e%3cpath%20d='M19%2020C18.5871%2018.8525%2017.6773%2017.8384%2016.4117%2017.1152C15.146%2016.392%2013.5953%2016%2012%2016C10.4047%2016%208.85398%2016.392%207.58835%2017.1152C6.32271%2017.8384%205.41289%2018.8525%205%2020'%20stroke='%231DC071'%20stroke-width='2'%20stroke-linecap='round'/%3e%3c/svg%3e";
 const sun = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M12%2018.5455C10.264%2018.5455%208.59918%2017.8558%207.37167%2016.6283C6.14415%2015.4008%205.45455%2013.736%205.45455%2012C5.45455%2010.264%206.14415%208.59918%207.37167%207.37167C8.59918%206.14415%2010.264%205.45455%2012%205.45455C13.736%205.45455%2015.4008%206.14415%2016.6283%207.37167C17.8558%208.59918%2018.5455%2010.264%2018.5455%2012C18.5455%2013.736%2017.8558%2015.4008%2016.6283%2016.6283C15.4008%2017.8558%2013.736%2018.5455%2012%2018.5455ZM12%2016.3636C13.1573%2016.3636%2014.2672%2015.9039%2015.0856%2015.0856C15.9039%2014.2672%2016.3636%2013.1573%2016.3636%2012C16.3636%2010.8427%2015.9039%209.73278%2015.0856%208.91444C14.2672%208.0961%2013.1573%207.63636%2012%207.63636C10.8427%207.63636%209.73278%208.0961%208.91444%208.91444C8.0961%209.73278%207.63636%2010.8427%207.63636%2012C7.63636%2013.1573%208.0961%2014.2672%208.91444%2015.0856C9.73278%2015.9039%2010.8427%2016.3636%2012%2016.3636ZM10.9091%201.09091C10.9091%200.488417%2011.3975%200%2012%200C12.6025%200%2013.0909%200.488417%2013.0909%201.09091V2.18182C13.0909%202.78431%2012.6025%203.27273%2012%203.27273C11.3975%203.27273%2010.9091%202.78431%2010.9091%202.18182V1.09091ZM10.9091%2021.8182C10.9091%2021.2157%2011.3975%2020.7273%2012%2020.7273C12.6025%2020.7273%2013.0909%2021.2157%2013.0909%2021.8182V22.9091C13.0909%2023.5116%2012.6025%2024%2012%2024C11.3975%2024%2010.9091%2023.5116%2010.9091%2022.9091V21.8182ZM3.51491%205.05745C3.08895%204.63149%203.08895%203.94087%203.51491%203.51491C3.94087%203.08895%204.63149%203.08895%205.05745%203.51491L5.82873%204.28618C6.25469%204.71214%206.25469%205.40277%205.82873%205.82873C5.40277%206.25469%204.71214%206.25469%204.28618%205.82873L3.51491%205.05745ZM18.1713%2019.7138C17.7453%2019.2879%2017.7453%2018.5972%2018.1713%2018.1713C18.5972%2017.7453%2019.2879%2017.7453%2019.7138%2018.1713L20.4851%2018.9425C20.9111%2019.3685%2020.9111%2020.0591%2020.4851%2020.4851C20.0591%2020.9111%2019.3685%2020.9111%2018.9425%2020.4851L18.1713%2019.7138ZM18.9421%203.51464C19.3682%203.0883%2020.0594%203.08834%2020.4855%203.51473C20.9113%203.94083%2020.9111%204.63141%2020.4852%205.05736L19.7139%205.82864C19.2879%206.25465%2018.5972%206.25465%2018.1712%205.82864C17.7452%205.4027%2017.7452%204.71213%2018.171%204.28609L18.9421%203.51464ZM4.28618%2018.1713C4.71214%2017.7453%205.40277%2017.7453%205.82873%2018.1713C6.25469%2018.5972%206.25469%2019.2879%205.82873%2019.7138L5.05746%2020.4851C4.63149%2020.9111%203.94087%2020.9111%203.51491%2020.4851C3.08895%2020.0591%203.08895%2019.3685%203.51491%2018.9425L4.28618%2018.1713ZM22.9091%2010.9091C23.5116%2010.9091%2024%2011.3975%2024%2012C24%2012.6025%2023.5116%2013.0909%2022.9091%2013.0909H21.8182C21.2157%2013.0909%2020.7273%2012.6025%2020.7273%2012C20.7273%2011.3975%2021.2157%2010.9091%2021.8182%2010.9091H22.9091ZM2.18182%2010.9091C2.78431%2010.9091%203.27273%2011.3975%203.27273%2012C3.27273%2012.6025%202.78431%2013.0909%202.18182%2013.0909H1.09091C0.488417%2013.0909%200%2012.6025%200%2012C0%2011.3975%200.488417%2010.9091%201.09091%2010.9091H2.18182Z'%20fill='%23808191'/%3e%3c/svg%3e";
 const tagType = "data:image/svg+xml,%3csvg%20width='16'%20height='12'%20viewBox='0%200%2016%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5.8775%201.5L7.3775%203H14V10.5H2V1.5H5.8775ZM6.5%200H2C1.175%200%200.5075%200.675%200.5075%201.5L0.5%2010.5C0.5%2011.325%201.175%2012%202%2012H14C14.825%2012%2015.5%2011.325%2015.5%2010.5V3C15.5%202.175%2014.825%201.5%2014%201.5H8L6.5%200Z'%20fill='%23808191'/%3e%3c/svg%3e";
@@ -31470,34 +31470,34 @@ const navlinks = [
   {
     name: "Главная",
     imgUrl: dashboard,
-    link: "/bettertogether/home"
+    link: "/home"
   },
   {
     name: "Отправить запрос",
     imgUrl: createCampaign,
-    link: "/bettertogether/suggest-project"
+    link: "/suggest-project"
   },
   // {
   //   name: 'withdraw',
   //   imgUrl: withdraw,
-  //   link: "/bettertogether/home",
+  //   link: "/home",
   //   disabled: true,
   // },
   {
     name: "Мои проекты",
     imgUrl: profile,
-    link: "/bettertogether/profile"
+    link: "/profile"
   },
   {
     name: "Выйти",
     imgUrl: logout,
-    link: "/bettertogether/home"
+    link: "/home"
     // disabled: true,
   },
   {
     name: "О нас",
     imgUrl: payment,
-    link: "/bettertogether/about_us"
+    link: "/about_us"
   }
 ];
 const Icon$1 = ({ styles, name: name2, imgUrl, isActive, disabled, handleClick, isDarkMode }) => {
@@ -31640,10 +31640,10 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
           handleClick: () => user ? navigate("suggest-project") : signIn()
         }
       ),
-      user && user.photoURL ? /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/bettertogether/profile", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: user.photoURL, alt: "user", className: "w-[100%] h-[100%] rounded-full object-contain" }) }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "default", className: "w-[120%] h-[120%] object-contain" }) })
+      user && user.photoURL ? /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/profile", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: user.photoURL, alt: "user", className: "w-[100%] h-[100%] rounded-full object-contain" }) }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "default", className: "w-[120%] h-[120%] object-contain" }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:hidden flex justify-between items-center relative", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/bettertogether/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? "bg-[#2c2f32]" : "bg-[#e6e6e6]"} flex justify-center items-center cursor-pointer`, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "user", className: "w-[120%] h-[120%] object-contain" }) }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `w-[40px] h-[40px] rounded-[10px] ${isDarkMode ? "bg-[#2c2f32]" : "bg-[#e6e6e6]"} flex justify-center items-center cursor-pointer`, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "user", className: "w-[120%] h-[120%] object-contain" }) }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "img",
         {
@@ -31664,7 +31664,7 @@ const Navbar = ({ setSearchResults, setSearchTerm, onSearch, setLastDoc }) => {
               navigate(link.link);
               if (link.name === "Выйти") {
                 handleLogout();
-                navigate("/bettertogether/home");
+                navigate("/home");
               }
             },
             children: [
@@ -31731,7 +31731,7 @@ const Sidebar = () => {
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center flex-col sticky top-5 h-[93vh]", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex justify-between items-center flex-col rounded-[7px] sticky  h-[7.5vh] ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/bettertogether/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { styles: "w-[52px] h-[52px] bg-[#2c2f32]", imgUrl: logo }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex justify-between items-center flex-col rounded-[7px] sticky  h-[7.5vh] ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { styles: "w-[52px] h-[52px] bg-[#2c2f32]", imgUrl: logo }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `flex-1 flex flex-col justify-between items-center ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"} rounded-[20px] w-[76px] py-4 mt-12`, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col justify-center items-center gap-3", children: navlinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx(
         Icon,
@@ -31746,7 +31746,7 @@ const Sidebar = () => {
             }
             if (link.name === "Выйти") {
               handleLogout();
-              navigate("/bettertogether/home");
+              navigate("/home");
             }
           }
         },
@@ -31966,7 +31966,7 @@ const DisplayProjects = ({ title, projects, isLoading, isSearch, isSearched, han
   }, [user]);
   const filteredProjects = isAdmin ? projects : projects.filter((project) => project.approved);
   const handleProjectClick = (project) => {
-    navigate(`/bettertogether/project-details/${encodeURIComponent(project.title)}`, { state: { pId: project.pId } });
+    navigate(`/project-details/${encodeURIComponent(project.title)}`, { state: { pId: project.pId } });
     projects = [];
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -32384,7 +32384,7 @@ const ProjectDetail = () => {
   const handleDeleteProject = async () => {
     if (window.confirm("Вы уверены что хотите удалить этот проект?")) {
       await deleteProject(state.pId);
-      navigate("/bettertogether/home");
+      navigate("/home");
     }
   };
   if (!projectData.title) {
@@ -32559,7 +32559,7 @@ const SuggestProject = () => {
         setIsLoading(true);
         await suggestProject(form);
         setIsLoading(false);
-        navigate("/bettertogether/home");
+        navigate("/home");
       } else {
         alert("Provide valid image URL");
         setForm({ ...form, image: "" });
@@ -32694,17 +32694,17 @@ const AboutUs = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "w-full bg-grey-600 text-white py-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "container mx-auto flex justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold", children: "О Нас" }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "container mx-auto px-4 py-10", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "text-center mb-10", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-semibold text-white mb-4", children: "Добро пожаловать в нашу компанию!" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg text-[#bdbdbd]", children: "Мы — команда профессионалов, которая стремится предоставить лучший сервис в нашей области. Наша цель — удовлетворить потребности наших клиентов и превзойти их ожидания." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-semibold text-white mb-4", children: "О BetterTogether" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg text-[#bdbdbd]", children: "BetterTogether — это уникальная платформа, созданная для того, чтобы стать мостом между волонтерами, инвесторами и социальными проектами в Кыргызстане. Наша цель — объединить усилия тех, кто стремится к позитивным изменениям, с теми, кто готов поддержать их своими ресурсами и временем." })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "flex flex-col md:flex-row gap-10", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "md:w-1/2 p-4 bg-[#919191] rounded-lg shadow-lg", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl font-semibold mb-4", children: "Наша Миссия" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-700", children: "Наша миссия — предоставить качественные решения для наших клиентов и создать долгосрочные партнерские отношения, основанные на доверии и взаимном уважении." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl font-semibold mb-4", children: "Цель Платформы" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-700", children: "На нашей платформе вы найдете информацию о различных социальных проектах, которые нуждаются в поддержке. Мы стремимся создать прозрачную и доступную среду, где каждый может внести свой вклад в развитие общества. Независимо от того, хотите ли вы стать волонтером, ищете финансирование для вашего проекта или желаете поддержать инициативы, которые вам близки, наша платформа предоставит вам все необходимые инструменты." })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "md:w-1/2 p-4 bg-[#919191] rounded-lg shadow-lg", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl font-semibold mb-4", children: "Наша Команда" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-700", children: "Наша команда состоит из опытных специалистов, которые работают над проектами с большой преданностью делу. Мы ценим каждый вклад и работаем вместе для достижения общих целей." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl font-semibold mb-4", children: "Вместе для Будущего" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-700", children: "Мы верим, что вместе мы можем сделать мир лучше, начав с нашего родного Кыргызстана. Присоединяйтесь к нам, чтобы создать будущее, полное возможностей и равенства для всех." })
         ] })
       ] })
     ] }),
@@ -32714,7 +32714,7 @@ const AboutUs = () => {
 const WelcomePage = () => {
   const navigate = useNavigate();
   const handleNavigateHome = () => {
-    navigate("/bettertogether/home");
+    navigate("/home");
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "w-full bg-gray-600 text-white py-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "container mx-auto flex justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold", children: "Добро пожаловать" }) }) }),
@@ -32784,12 +32784,12 @@ const App = () => {
           }
         ) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/home", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Home, {}) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether", element: /* @__PURE__ */ jsxRuntimeExports.jsx(WelcomePage, {}) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/about_us", element: /* @__PURE__ */ jsxRuntimeExports.jsx(AboutUs, {}) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/profile", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Profile, {}) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/suggest-project", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SuggestProject, {}) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/bettertogether/project-details/:title", element: /* @__PURE__ */ jsxRuntimeExports.jsx(ProjectDetail, {}) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/home", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Home, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(WelcomePage, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/about_us", element: /* @__PURE__ */ jsxRuntimeExports.jsx(AboutUs, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/profile", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Profile, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/suggest-project", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SuggestProject, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/project-details/:title", element: /* @__PURE__ */ jsxRuntimeExports.jsx(ProjectDetail, {}) })
         ] })
       ] })
     ] }),
