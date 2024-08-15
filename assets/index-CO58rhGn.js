@@ -31731,7 +31731,7 @@ const Sidebar = () => {
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center flex-col sticky top-5 h-[93vh]", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex justify-between items-center flex-col rounded-[7px] sticky  h-[7.5vh] ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { styles: "w-[52px] h-[52px] bg-[#2c2f32]", imgUrl: logo }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex justify-between items-center flex-col rounded-[7px] sticky  h-[9.8vh] ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/home", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { styles: "w-[80px] h-[70px] bg-[#2c2f32]", imgUrl: logo }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `flex-1 flex flex-col justify-between items-center ${isDarkMode ? "bg-[#1c1c24]" : "bg-[#e6e6e6]"} rounded-[20px] w-[76px] py-4 mt-12`, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col justify-center items-center gap-3", children: navlinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx(
         Icon,
@@ -32690,12 +32690,21 @@ const SuggestProject = () => {
   ] });
 };
 const AboutUs = () => {
+  const { theme } = useStateContext();
+  const [isDarkMode, setDarkMode] = reactExports.useState(false);
+  reactExports.useEffect(() => {
+    if (theme === "light") {
+      setDarkMode(false);
+    } else if (theme === "dark") {
+      setDarkMode(true);
+    }
+  }, [theme]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "w-full bg-grey-600 text-white py-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "container mx-auto flex justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold", children: "О Нас" }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: `w-full bg-grey-600 ${isDarkMode ? "text-white" : "text-black  "} py-6`, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "container mx-auto flex justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold", children: "О Нас" }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "container mx-auto px-4 py-10", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "text-center mb-10", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-semibold text-white mb-4", children: "О BetterTogether" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg text-[#bdbdbd]", children: "BetterTogether — это уникальная платформа, созданная для того, чтобы стать мостом между волонтерами, инвесторами и социальными проектами в Кыргызстане. Наша цель — объединить усилия тех, кто стремится к позитивным изменениям, с теми, кто готов поддержать их своими ресурсами и временем." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: `text-2xl font-semibold ${isDarkMode ? "text-white" : "text-black  "} mb-4`, children: "BetterTogether" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: `text-lg ${isDarkMode ? "text-[#bdbdbd]" : "text-black  "}`, children: "BetterTogether — это уникальная платформа, созданная для того, чтобы стать мостом между волонтерами, инвесторами и социальными проектами в Кыргызстане. Наша цель — объединить усилия тех, кто стремится к позитивным изменениям, с теми, кто готов поддержать их своими ресурсами и временем." })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "flex flex-col md:flex-row gap-10", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "md:w-1/2 p-4 bg-[#919191] rounded-lg shadow-lg", children: [
@@ -32712,22 +32721,31 @@ const AboutUs = () => {
   ] });
 };
 const WelcomePage = () => {
+  const { theme } = useStateContext();
+  const [isDarkMode, setDarkMode] = reactExports.useState(false);
   const navigate = useNavigate();
   const handleNavigateHome = () => {
     navigate("/home");
   };
+  reactExports.useEffect(() => {
+    if (theme === "light") {
+      setDarkMode(false);
+    } else if (theme === "dark") {
+      setDarkMode(true);
+    }
+  }, [theme]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "w-full bg-gray-600 text-white py-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "container mx-auto flex justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold", children: "Добро пожаловать" }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "container mx-auto px-4 py-10 flex-grow", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "text-center mb-10", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-semibold text-white mb-4", children: "Добро пожаловать на наш сайт!" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg text-[#bdbdbd]", children: "Мы рады видеть вас на нашем сайте. Здесь вы найдете множество интересных материалов и возможностей." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: `text-2xl font-semibold ${isDarkMode ? "text-white" : "text-black  "} mb-4`, children: "Добро пожаловать в BetterTogether!" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: `text-lg ${isDarkMode ? "text-[#bdbdbd]" : "text-black  "}`, children: "Наша платформа - это ваш путь к достижению значимых результатов в Кыргызстане. Независимо от того, хотите ли вы стать волонтером, получить финансирование для проекта или поддержать инициативы, которые находят у вас отклик, BetterTogether предлагает все необходимое, чтобы внести свой вклад в позитивные изменения. Присоединяйтесь к нам в построении будущего, полного возможностей и равенства для всех. Вместе мы сможем создать лучший мир, начав прямо здесь и прямо сейчас." })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
           onClick: handleNavigateHome,
-          className: "px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700",
+          className: "px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700",
           children: "Перейти на главную"
         }
       ) })
