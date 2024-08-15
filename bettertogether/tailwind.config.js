@@ -15,11 +15,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    
-  ],
-  purge: {
-    enabled: true, // or use appropriate configuration for your setup
-    content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  },
+  plugins: [],
 };
